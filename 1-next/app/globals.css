@@ -1,0 +1,268 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+  body {
+    background-color: black;
+    color: black;
+  }
+  .navbar-menu-item,
+  .dropdown-menu {
+    color: black;
+  }
+}
+
+body {
+  font-family: "Roboto slab", sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+.logo {
+  margin-right: 25px;
+  font-size: 34px;
+  font-weight: bold;
+  white-space: nowrap;
+  -webkit-text-stroke-width: 0.01px;
+  -webkit-text-stroke-color: rgb(0, 0, 0);
+  display: flex;
+}
+.home-logo {
+  filter: hue-rotate(95deg);
+  position: absolute;
+  z-index: 10;
+  opacity: 0.95;
+  /* top: 70px; */
+  /* left: 15px; */
+  transform: scale(0.6);
+}
+.header {
+  font-family: "Roboto Slab", sans-serif;
+  color: #0e793c;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: white;
+  width: 100vw;
+  height: 10vh;
+  position: fixed;
+  z-index: 1000;
+}
+.header header {
+  max-width: 100%;
+}
+
+.navigation a {
+  font-size: 20px;
+  margin-left: 20px;
+  margin-right: 10px;
+  text-decoration: none;
+  color: #12a150;
+  transition: color 0.2s;
+}
+.navigation a:hover,
+.link:hover {
+  color: blue;
+  cursor: pointer;
+}
+.sub-header {
+  height: 110px;
+  font-size: 25px;
+  color: white;
+  background-color: #12a150;
+  display: flex;
+  /* flex-direction:column; */
+  text-align: center;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.link {
+  transition: color 0.2s;
+}
+
+.main-body {
+  border: solid;
+  border-color: red;
+  min-height: calc(100vh - 195px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.home-body {
+  height: max(90vh, 90vw);
+  overflow-y: auto;
+}
+#home-wrap {
+  margin: 8%;
+  margin-bottom: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar {
+  transform: scale(2.5);
+  margin: 3px;
+}
+/* cyan filter: sepia(74%) saturate(1176%) hue-rotate(114deg)
+    brightness(95%) contrast(86%); 
+    pink sepia(0%)
+
+
+    */
+.left-acc {
+  width: 40%;
+  margin-top: 3%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.right-acc {
+  width: 60%;
+  padding: 10px;
+}
+.login-button {
+  border-color: #12a150;
+  height: 5px;
+}
+.login-button:hover {
+  background-color: #12a150;
+}
+h1 {
+  font-size: 40px;
+}
+h3 {
+  font-size: 22px;
+}
+
+.columns {
+  font-size: 15px;
+}
+.columns:hover {
+  color: blue;
+  background-color: rgb(193, 193, 193);
+  cursor: pointer;
+}
+.dropdown-icon::before {
+  display: inline;
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 5px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid currentColor;
+  vertical-align: middle;
+}
+
+.texts {
+  position: relative;
+  height: 40px;
+  line-height: 40px;
+  color: #fff;
+  font-size: 48px;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-align: center;
+  overflow: hidden;
+}
+/* .texts:nth-child(odd){
+  transform: skew(60deg, -30deg);
+}
+.texts:nth-child(even){
+  transform: skew(0deg, -30deg) scaleY(1.5)
+}
+.texts:nth-child(1){
+  left:-99.5px;
+  top: -49.9px;
+}
+.texts:nth-child(2){
+  left: -65px;
+  top:-40.1px;
+}
+.texts:nth-child(3){
+  left: -30.5px;
+  top:-30.1px;
+}
+.texts:nth-child(4){
+  left: 3.8px;
+  top:-20.1px;
+}
+.texts:nth-child(5){
+  left: 38px;
+  top:-10.1px;
+} */
+
+.texts p {
+  transition: 0.5s ease-in-out;
+  animation: climbing 4s linear infinite;
+}
+@keyframes climbing {
+  100% {
+    transform: translate(0, -40px);
+  }
+}
+.navbar-menu-item {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.navbar-menu-item a {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (max-width: 639px) {
+  .left-acc{
+    margin-top:8%
+  }
+  #home-wrap {
+    display: flex;
+    flex-direction: column;
+
+  }
+  #header-title {
+    display: none;
+  }
+  .navigation {
+    display: none;
+  }
+  .home-logo {
+    filter: hue-rotate(95deg);
+    position: absolute;
+    z-index: 10;
+    opacity: 0.95;
+    transform: scale(0.7);
+  }
+  .texts {
+    font-size: xx-large;
+  }
+  h1 {
+    font-size: 30px;
+  }
+}
