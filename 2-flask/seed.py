@@ -7,7 +7,7 @@ if __name__ == '__main__':
     with app.app_context():
         User.query.delete()
         Record.query.delete()
-
+        Program.query.delete()
         print("seeding users")
         
         # pw_hash = bcrypt.generate_password_hash(‘hunter2’).decode(‘utf-8’)
@@ -50,6 +50,17 @@ if __name__ == '__main__':
         recs = [rec1,rec2,rec3,rec4,rec5,rec6,rec7,rec8,rec9,rec10,rec11,rec12]
         db.session.add_all(recs)
         db.session.commit()
+        
+        # yoga1 = Program(type="Yoga", days=[])
         print("Done seeding")
 
+
+# class Program(db.Model, SerializerMixin):
+#     __tablename__='programs'
+    
+#     id = db.Column(db.Integer, primary_key=True)
+#     type = db.Column(db.String, nullable=False)
+#     date = db.Column(db.String, default="TBD")
+#     time = db.Column(db.String, default="TBD")
+#     users = db.relationsh
 

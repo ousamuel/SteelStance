@@ -27,7 +27,7 @@ class User(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     is_active = db.Column(db.Boolean, default=True)
-    authenticated = db.Column(db.Boolean, default=True)
+    authenticated = db.Column(db.Boolean, default=False)
     username = db.Column(db.String, unique=True, nullable=False)
     email = db.Column(db.Text, unique=True, nullable=False)
     height_ft = db.Column(db.String)
@@ -59,31 +59,6 @@ class Record(db.Model, SerializerMixin):
     date = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     serialize_rules=('-user.records',)
-class Squat(db.Model, SerializerMixin):
-    __tablename__ = 'squats'
-    
-    id = db.Column(db.Integer, primary_key=True)
-    gender = db.Column(db.String)
-    weight_lb = db.Column(db.Integer)
-    date = db.Column(db.String)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-class Bench(db.Model, SerializerMixin):
-    __tablename__ = 'benches'
-    
-    id = db.Column(db.Integer, primary_key=True)
-    
-    gender = db.Column(db.String)
-    weight_lb = db.Column(db.Integer)
-    date = db.Column(db.String)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'),  unique=True)
-class Deadlift(db.Model, SerializerMixin):
-    __tablename__ = 'deadlifts'
-    
-    id = db.Column(db.Integer, primary_key=True)
-    gender = db.Column(db.String)
-    weight_lb = db.Column(db.Integer)
-    date = db.Column(db.String)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), unique=True)
 
 class Program(db.Model, SerializerMixin):
     __tablename__='programs'
@@ -91,7 +66,7 @@ class Program(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.String, nullable=False)
     # Cycling, Pilates, Kickboxing
-    date = db.Column(db.String, default="TBD")
+    # days = db.Column(db.String, default="TBD")
     time = db.Column(db.String, default="TBD")
     users = db.relationship('User', cascade ='all, delete', secondary=user_program, back_populates='programs')
 
@@ -104,5 +79,4 @@ class Instructor(db.Model, SerializerMixin):
     first_name = db.Column(db.String, nullable=False)
     bio = db.Column(db.String)
     program_id = db.Column(db.String, db.ForeignKey('programs.id'))
-
 
