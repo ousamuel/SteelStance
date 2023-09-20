@@ -224,6 +224,17 @@ h3 {
     transform: translate(0, -40px);
   }
 }
+.delete-pop{
+  position:absolute;
+  z-index:10000;
+  /* margin-top:max(30vh, 30vw); */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.transition-blur {
+  transition: filter 0.1s ease-in-out;
+}
 .navbar-menu-item {
   display: flex;
   width: 100%;
@@ -237,7 +248,22 @@ h3 {
   align-items: center;
   justify-content: center;
 }
+.program-div{
+  /* max-width: min(50vw, 50vh); */
+  padding-top: 5%;
+  padding-bottom:5%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+}
 @media screen and (max-width: 639px) {
+  .program-div{
+    flex-direction: column;
+
+  }
   .left-acc{
     margin-top:8%
   }

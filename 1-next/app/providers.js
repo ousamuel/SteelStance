@@ -10,7 +10,8 @@ export function Providers({ children }) {
   const [records, setRecords] = useState([]);
   const [userRecords, setUserRecords] = useState([]);
   const [categoryArr, setCategoryArr] = useState([]);
-  const [userPrograms, setUserPrograms] = useState([]);
+  // const [userPrograms, setUserPrograms] = useState([]);
+  const [programs, setPrograms] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -40,6 +41,15 @@ export function Providers({ children }) {
         setCategoryArr(data);
       })
       .catch((error) => console.error("Error fetching record data:", error));
+
+    fetch("http://127.0.0.1:5555/programs", {
+      credentials: "include",
+    })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((data) => {
+        setPrograms(data);
+      })
+      .catch((error) => console.error("Error fetching program data:", error));
   }, []);
   if (loading) {
     return (
@@ -57,8 +67,8 @@ export function Providers({ children }) {
   return (
     <Context.Provider
       value={{
-        userPrograms,
-        setUserPrograms,
+        programs,
+        setPrograms,
         loading,
         setLoading,
         userRecords,

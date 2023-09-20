@@ -8,7 +8,6 @@ npm install formik --save
 npm install formik yup
 
 npm install @nextui-org/react
-npm install @react-google-maps/api
 npm install use-places-autocomplete
 
 npm install redux react-redux next-redux-wrapper

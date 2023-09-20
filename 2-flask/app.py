@@ -46,6 +46,19 @@ class CurrentUser(Resource):
             return make_response(user.to_dict(), 200)
         else:
             return make_response({"message": "User not found"}, 404)
+    def patch(self):
+        user = current_user
+        data = request.get_json()
+        
+    def delete(self):
+        user = current_user
+        if user:
+            db.session.delete(user)
+            db.session.commit()
+            return make_response("deleted", 204)
+        else:
+            return make_response({"message": "User not found"}, 404)
+         
 api.add_resource(CurrentUser,'/currentUser')
 
 class Users(Resource):
@@ -144,6 +157,12 @@ class Records(Resource):
         return make_response(record.to_dict(), 204)
 api.add_resource(Records, "/records")
 
+class Programs(Resource):
+    def get(self):
+        programs = Program.query.all()
+        programs_ser=[p.to_dict() for p in programs]
+        return make_response(programs_ser, 200)
+api.add_resource(Programs, '/programs')
 # class RecordsById(Resource):
 #     def get(self, id):
 #         records = Record.query.filter(Record.id == id)

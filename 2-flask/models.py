@@ -30,7 +30,8 @@ class User(db.Model, SerializerMixin):
     authenticated = db.Column(db.Boolean, default=False)
     username = db.Column(db.String, unique=True, nullable=False)
     email = db.Column(db.Text, unique=True, nullable=False)
-    height_ft = db.Column(db.String)
+    height_ft = db.Column(db.Integer)
+    height_in = db.Column(db.Integer)
     weight_lb = db.Column(db.Integer)
     gender = db.Column(db.String)
     hash = db.Column(db.Text, nullable=False)
@@ -65,12 +66,14 @@ class Program(db.Model, SerializerMixin):
     
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.String, nullable=False)
+    level = db.Column(db.String, nullable=False)
     # Cycling, Pilates, Kickboxing
-    # days = db.Column(db.String, default="TBD")
+    days = db.Column(db.String, default="TBD")
     time = db.Column(db.String, default="TBD")
     users = db.relationship('User', cascade ='all, delete', secondary=user_program, back_populates='programs')
+    serialize_rules=('-instructor.programs',)
 
-    instructors = db.relationship('Instructor', cascade='all, delete', backref='program')
+    instructor_id = db.Column(db.String, db.ForeignKey('instructors.id'))
     
 class Instructor(db.Model, SerializerMixin):
     __tablename__='instructors'
@@ -78,5 +81,5 @@ class Instructor(db.Model, SerializerMixin):
     id = db.Column(db.Integer,primary_key=True)
     first_name = db.Column(db.String, nullable=False)
     bio = db.Column(db.String)
-    program_id = db.Column(db.String, db.ForeignKey('programs.id'))
+    programs = db.relationship('Program', backref = 'instructor')
 

@@ -26,34 +26,34 @@ export default function Header() {
   const pathname = usePathname();
   const { routeText, setRouteText, user, setUser, isMenuOpen, setIsMenuOpen } =
     useContext(Context);
-  const workouts = [
+  const programs = [
     {
       name: "YOGA",
-      route: "/workouts/yoga",
+      route: "/programs/yoga",
       src: "/images/yoga.svg",
     },
     {
       name: "CYCLING",
-      route: "/workouts/cycling",
+      route: "/programs/cycling",
       src: "/images/cycle.svg",
     },
     {
       name: "BOXING",
-      route: "/workouts/boxing",
+      route: "/programs/boxing",
       src: "/images/boxing.svg",
     },
   ];
-  const workoutblock = workouts.map((workout) => {
+  const programblock = programs.map((program) => {
     return (
       <DropdownItem
-        key={workout.name}
-        textValue={workout.name}
+        key={program.name}
+        textValue={program.name}
         style={{ textAlign: "center" }}
         onPress={() => {
-          handleSelection(workout.route);
+          handleSelection(program.route);
         }}
       >
-        {workout.name}
+        {program.name}
         <Image
           style={{
             display: "inline",
@@ -62,24 +62,24 @@ export default function Header() {
           }}
           width={15}
           height={15}
-          alt={workout.src}
-          src={workout.src}
+          alt={program.src}
+          src={program.src}
         />
       </DropdownItem>
     );
   });
-  const workoutblockPhone = workouts.map((workout) => {
+  const programblockPhone = programs.map((program) => {
     return (
       <DropdownItem
-        key={workout.name}
-        textValue={workout.name}
+        key={program.name}
+        textValue={program.name}
         style={{ textAlign: "center" }}
         onPress={() => {
           handleMenu();
-          handleSelection(workout.route);
+          handleSelection(program.route);
         }}
       >
-        {workout.name}
+        {program.name}
         <Image
           style={{
             display: "inline",
@@ -88,8 +88,8 @@ export default function Header() {
           }}
           width={15}
           height={15}
-          alt={workout.src}
-          src={workout.src}
+          alt={program.src}
+          src={program.src}
         />
       </DropdownItem>
     );
@@ -102,11 +102,26 @@ export default function Header() {
       case "/":
         setRouteText("HOME");
         break;
+      case "/programs/boxing":
+        setRouteText("BOXING");
+        break;
+      case "/programs/cycling":
+        setRouteText("CYCLING");
+        break;
+      case "/programs/yoga":
+        setRouteText("YOGA");
+        break;
       case "/personal-records":
         setRouteText("PERSONAL RECORDS");
         break;
       case "/sign-up":
         setRouteText("REGISTER");
+        break;
+      case "/profile":
+        setRouteText("PROFILE");
+        break;
+      case "/settings":
+        setRouteText("SETTINGS");
         break;
       default:
         setRouteText("Menu");
@@ -136,6 +151,11 @@ export default function Header() {
   function handleMenu() {
     setIsMenuOpen((prevState) => !prevState);
   }
+ // BMI Categories:
+  // Underweight = <18.5
+  // Normal weight = 18.5–24.9
+  // Overweight = 25–29.9
+  // Obesity = BMI of 30 or greater
 
   return (
     <Navbar
@@ -175,10 +195,10 @@ export default function Header() {
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Dropdown id="workout-dropdown">
+          <Dropdown id="program-dropdown">
             <DropdownTrigger >
               <a className='link'>
-                WORKOUTS
+                PROGRAMS
                 <span className="dropdown-icon" />
               </a>
             </DropdownTrigger>
@@ -187,7 +207,7 @@ export default function Header() {
               closeOnSelect="True"
               aria-label="Static Actions"
             >
-              {workoutblock}
+              {programblock}
             </DropdownMenu>
           </Dropdown>
         </NavbarItem>
@@ -320,7 +340,7 @@ export default function Header() {
           </Link>
         </NavbarMenuItem>
         <NavbarMenuItem className="navbar-menu-item">
-          <Dropdown id="workout-dropdown">
+          <Dropdown id="program-dropdown">
             <DropdownTrigger>
               <a>
                 PROGRAMS
@@ -333,7 +353,7 @@ export default function Header() {
               aria-label="Static Actions"
               className="dropdown-menu"
             >
-              {workoutblockPhone}
+              {programblockPhone}
             </DropdownMenu>
           </Dropdown>
         </NavbarMenuItem>

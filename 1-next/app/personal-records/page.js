@@ -20,17 +20,16 @@ import {
 } from "@nextui-org/react";
 
 export default function Squat() {
-  
   const router = useRouter();
-  const { records, setRecords, user, categoryArr, setCategoryArr } = useContext(Context);
+  const { records, setRecords, user, categoryArr, setCategoryArr } =
+    useContext(Context);
   const [category, setCategory] = useState("All");
   const [sortConfig, setSortConfig] = useState({
     key: null,
     direction: "ascending",
   });
-  console.log(records)
+  console.log(records);
 
-  
   function handleCategory(e) {
     let results = records;
     setCategory(e.target.value);
@@ -88,53 +87,57 @@ export default function Squat() {
             label: "TYPE",
           },
           {
-            key: "gender",
-            label: "GENDER",
-          },
-          {
             key: "weight_lb",
             label: "WEIGHT",
+          },
+          {
+            key: "gender",
+            label: "GENDER",
           },
           {
             key: "date",
             label: "DATE",
           },
+          // {
+          //   key: "height_ft",
+          //   label: "self height",
+          // },
         ])
       : (columns = [
           {
-            key: "gender",
-            label: "GENDER",
-          },
-          {
             key: "weight_lb",
             label: "WEIGHT",
           },
           {
             key: "date",
             label: "DATE",
+          },
+          {
+            key: "gender",
+            label: "GENDER",
           },
         ]);
   }
   const schema = Yup.object().shape({
-    type: Yup.string()
-      .required("Type is a required field"),
+    type: Yup.string().required("Type is a required field"),
     email: Yup.string()
       .required("Email is a required field")
       .email("Invalid email format"),
     weight_lb: Yup.number()
       .required("Weight is a required field")
-      .min(2, "Password must be at least two digits"),
+      .min(2, "Weight must be at least two digits")
+      .max(4, "Weight must be at most four digits"),
     confirm: Yup.string()
       .required("Password must match")
       .oneOf([Yup.ref("password"), null], "Passwords must match"),
   });
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     document.getElementById("submit-form").reset();
     console.log(formik.values);
     console.log(formik.errors);
-    formik.resetForm()
+    formik.resetForm();
   };
   const formik = useFormik({
     initialValues: {
@@ -143,11 +146,11 @@ export default function Squat() {
       weight_lb: "",
       date: "-",
     },
-    validationSchema:schema,
+    validationSchema: schema,
     onSubmit: handleSubmit,
   });
   return (
-    <div>
+    <div >
       <div className="sub-header" style={{ color: "black" }}>
         <Select
           items={lifts}
@@ -160,6 +163,7 @@ export default function Squat() {
           {(lift) => <SelectItem key={lift.value}>{lift.label}</SelectItem>}
         </Select>
       </div>
+      <div className='p-5'>
       <Table
         isHeaderSticky
         aria-label="dynamic content"
@@ -262,6 +266,7 @@ export default function Squat() {
           Sign up/Log in to add your own PR
         </Button>
       )}
+      </div>
     </div>
   );
 }
