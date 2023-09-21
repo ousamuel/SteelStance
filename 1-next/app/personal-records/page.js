@@ -3,6 +3,7 @@ import React, { useState, useContext, useEffect, useMemo } from "react";
 import { Context } from "../providers";
 import { useFormik } from "formik";
 import { useRouter } from "next/navigation";
+
 import * as Yup from "yup";
 import {
   Table,
@@ -21,14 +22,13 @@ import {
 
 export default function Squat() {
   const router = useRouter();
-  const { records, setRecords, user, categoryArr, setCategoryArr } =
+  const { setRefresh, records, setRecords, user, categoryArr, setCategoryArr } =
     useContext(Context);
   const [category, setCategory] = useState("All");
   const [sortConfig, setSortConfig] = useState({
     key: null,
     direction: "ascending",
   });
-  console.log(records);
 
   function handleCategory(e) {
     let results = records;
@@ -91,6 +91,10 @@ export default function Squat() {
             label: "WEIGHT",
           },
           {
+            key: "body_weight",
+            label: "BW (lbs)",
+          },
+          {
             key: "gender",
             label: "GENDER",
           },
@@ -109,6 +113,10 @@ export default function Squat() {
             label: "WEIGHT",
           },
           {
+            key: "body_weight",
+            label: "BW (lbs)",
+          },
+          {
             key: "date",
             label: "DATE",
           },
@@ -120,37 +128,77 @@ export default function Squat() {
   }
   const schema = Yup.object().shape({
     type: Yup.string().required("Type is a required field"),
-    email: Yup.string()
-      .required("Email is a required field")
-      .email("Invalid email format"),
+    gender: Yup.string().required("Gender is a required field"),
+    date: Yup.date().required("Date is a required field"),
+    body_weight: Yup.number()
+      .required("Body weight is a required field")
+      .positive("Weight must be positive"),
     weight_lb: Yup.number()
       .required("Weight is a required field")
-      .min(2, "Weight must be at least two digits")
+      .positive("Weight must be positive")
       .max(4, "Weight must be at most four digits"),
-    confirm: Yup.string()
-      .required("Password must match")
-      .oneOf([Yup.ref("password"), null], "Passwords must match"),
   });
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    document.getElementById("submit-form").reset();
-    console.log(formik.values);
-    console.log(formik.errors);
-    formik.resetForm();
+    const currentType = formik.values.type;
+    const currentGender = formik.values.gender;
+
+    fetch("http://127.0.0.1:5555/records", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        user_id: user.id,
+        type: formik.values.type,
+        gender: formik.values.gender,
+        body_weight: formik.values.body_weight,
+        weight_lb: formik.values.weight_lb,
+        date: formik.values.date,
+      }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          if (response.status === 403) {
+            // alert("User not found");
+            throw new Error("403: Username is taken");
+          } else if (response.status === 401) {
+            // alert("Incorrect password");
+            throw new Error("401: Email already in use");
+          }
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        setRefresh((prevstate) => !prevstate);
+        document.getElementById("submit-form").reset();
+        formik.resetForm();
+        formik.setFieldValue("type", currentType);
+        formik.setFieldValue("gender", currentGender);
+        // router.push("/profile");
+      })
+      .catch((error) => {
+        console.error("Error posting:", error);
+      });
   };
+
   const formik = useFormik({
     initialValues: {
       type: "",
-      gender: "-",
+      gender: "",
       weight_lb: "",
-      date: "-",
+      body_weight: "",
+      date: "",
     },
     validationSchema: schema,
     onSubmit: handleSubmit,
   });
   return (
-    <div >
+    <div>
       <div className="sub-header" style={{ color: "black" }}>
         <Select
           items={lifts}
@@ -163,109 +211,124 @@ export default function Squat() {
           {(lift) => <SelectItem key={lift.value}>{lift.label}</SelectItem>}
         </Select>
       </div>
-      <div className='p-5'>
-      <Table
-        isHeaderSticky
-        aria-label="dynamic content"
-        classNames={{
-          base: "max-h-[520px] overflow-scroll",
-          table: "min-h-[420px]",
-        }}
-      >
-        <TableHeader columns={columns}>
-          {(column) => (
-            <TableColumn
-              key={column.key}
-              onClick={() => requestSort(column.key)}
-              className="columns"
-            >
-              {column.label}
-              <span className="dropdown-icon" />
-            </TableColumn>
-          )}
-        </TableHeader>
-        <TableBody items={sortedRecords}>
-          {(record) => (
-            <TableRow key={record.id}>
-              {(columnKey) => (
-                <TableCell>{getKeyValue(record, columnKey)}</TableCell>
-              )}
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
-      {user ? (
-        <form id="submit-form">
-          <div className="w-3/5 flex flex-wrap justify-center items-center m-auto gap-6 mt-5">
-            {/* <div className="flex w-1/2 mb-6 md:mb-0 gap-4"> */}
-            <Select
-              label="Type of Lift"
-              placeholder="Select a powerlift"
-              className="max-w-xs"
-              name="type"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              value={formik.values.type}
-              // onSubmit={(e) => console.log(e.target.value)}
-            >
-              <SelectItem key="Squat">SQUAT</SelectItem>
-              <SelectItem key="Bench">BENCH</SelectItem>
-              <SelectItem key="Deadlift">DEADLIFT</SelectItem>
-            </Select>
-            <Select
-              name="gender"
-              label="Gender"
-              placeholder="Select gender"
-              className="max-w-xs"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              value={formik.values.gender}
-            >
-              <SelectItem key="Male">MALE</SelectItem>
-              <SelectItem key="Female">FEMALE</SelectItem>
-            </Select>
-
-            <Input
-              type="text"
-              variant={"underlined"}
-              name="weight_lb"
-              label="Weight"
-              placeholder="Current Weight (lbs)"
-              className="max-w-sm"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-            />
-            <Input
-              type="text"
-              variant={"underlined"}
-              name="date"
-              label="Date"
-              placeholder="e.g. 2022-01-30"
-              className="max-w-sm"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-            />
-            <Button
-              radius="sm"
-              color="success"
-              type="submit"
-              onClick={handleSubmit}
-            >
-              Submit
-            </Button>
-            {/* </div> */}
-          </div>
-        </form>
-      ) : (
-        // </form>
-        <Button
-          className="flex flex-wrap justify-center items-center m-auto my-[15px]"
-          onClick={() => router.push("/sign-up")}
+      <div className="p-5">
+        <Table
+          isHeaderSticky
+          aria-label="dynamic content"
+          classNames={{
+            base: "max-h-[520px] overflow-scroll",
+            table: "min-h-[420px]",
+          }}
         >
-          {" "}
-          Sign up/Log in to add your own PR
-        </Button>
-      )}
+          <TableHeader columns={columns}>
+            {(column) => (
+              <TableColumn
+                key={column.key}
+                onClick={() => requestSort(column.key)}
+                className="columns"
+              >
+                {column.label}
+                <span className="dropdown-icon" />
+              </TableColumn>
+            )}
+          </TableHeader>
+          <TableBody items={sortedRecords}>
+            {(record) => (
+              <TableRow key={record.id}>
+                {(columnKey) => (
+                  <TableCell>{getKeyValue(record, columnKey)}</TableCell>
+                )}
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+        {user ? (
+          <form id="submit-form">
+            <div className=" flex flex-col justify-center items-center m-auto gap-6 mt-5">
+              {/* <div className="flex w-1/2 mb-6 md:mb-0 gap-4"> */}
+              <Select
+                isRequired
+                label="Type of Lift"
+                placeholder="Select a powerlift"
+                className="max-w-xs"
+                name="type"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                value={formik.values.type}
+                // onSubmit={(e) => console.log(e.target.value)}
+              >
+                <SelectItem key="Squat">SQUAT</SelectItem>
+                <SelectItem key="Bench">BENCH</SelectItem>
+                <SelectItem key="Deadlift">DEADLIFT</SelectItem>
+              </Select>
+              <Select
+                isRequired
+                name="gender"
+                label="Gender"
+                placeholder="Select gender"
+                className="max-w-xs"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                value={formik.values.gender}
+              >
+                <SelectItem key="Male">MALE</SelectItem>
+                <SelectItem key="Female">FEMALE</SelectItem>
+              </Select>
+
+              <Input
+                isRequired
+                type="number"
+                variant={"underlined"}
+                name="body_weight"
+                label="Body Weight"
+                placeholder="Body Weight (lbs)"
+                className="max-w-xs"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+              />
+              <Input
+                isRequired
+                type="number"
+                variant={"underlined"}
+                name="weight_lb"
+                label="Weight"
+                placeholder="Lift Weight (lbs)"
+                className="max-w-xs"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+              />
+              <Input
+                isRequired
+                type="date"
+                variant={"underlined"}
+                name="date"
+                label="Date"
+                placeholder="e.g. 2022-01-30"
+                className="max-w-xs"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+              />
+              <Button
+                radius="sm"
+                color="success"
+                type="submit"
+                onClick={handleSubmit}
+              >
+                Submit
+              </Button>
+              {/* </div> */}
+            </div>
+          </form>
+        ) : (
+          // </form>
+          <Button
+            className="flex flex-wrap justify-center items-center m-auto my-[15px]"
+            onClick={() => router.push("/sign-up")}
+          >
+            {" "}
+            Sign up/Log in to add your own PR
+          </Button>
+        )}
       </div>
     </div>
   );

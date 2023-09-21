@@ -10,7 +10,8 @@ export function Providers({ children }) {
   const [records, setRecords] = useState([]);
   const [userRecords, setUserRecords] = useState([]);
   const [categoryArr, setCategoryArr] = useState([]);
-  // const [userPrograms, setUserPrograms] = useState([]);
+  const [refresh, setRefresh] = useState([]);
+  const [userPrograms, setUserPrograms] = useState([]);
   const [programs, setPrograms] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -50,7 +51,7 @@ export function Providers({ children }) {
         setPrograms(data);
       })
       .catch((error) => console.error("Error fetching program data:", error));
-  }, []);
+  }, [refresh, user]);
   if (loading) {
     return (
       <div className="h-screen w-screen flex justify-center align-center items-center">
@@ -64,15 +65,45 @@ export function Providers({ children }) {
       </div>
     );
   }
+  function handleSave(program, event) {
+    console.log('handleSave')
+    event.preventDefault();
+    event.stopPropagation();
+    if (user.programs.includes(program)) {
+      const updatedPrograms = user.programs.filter((prog) => prog !== program);
+      
+      setUser({ ...user, programs: updatedPrograms });
+    } else {
+      setUser({ ...user, programs: [...user.programs, program] });
+      fetch("http://127.0.0.1:5555/userProgram", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({ program_id: program.id }),
+      })
+        .then((response) => (response.ok ? response.json() : null))
+        .then((data) => {
+          console.log(data);
+        });
+    }
+  }
   return (
     <Context.Provider
       value={{
+        handleSave,
+        refresh,
+        setRefresh,
         programs,
         setPrograms,
         loading,
         setLoading,
         userRecords,
         setUserRecords,
+        userPrograms,
+        setUserPrograms,
         routeText,
         setRouteText,
         isMenuOpen,

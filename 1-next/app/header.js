@@ -151,11 +151,6 @@ export default function Header() {
   function handleMenu() {
     setIsMenuOpen((prevState) => !prevState);
   }
- // BMI Categories:
-  // Underweight = <18.5
-  // Normal weight = 18.5–24.9
-  // Overweight = 25–29.9
-  // Obesity = BMI of 30 or greater
 
   return (
     <Navbar
@@ -250,7 +245,7 @@ export default function Header() {
                     src="/images/prof.svg"
                   />
                 </DropdownItem>
-                <DropdownItem
+                {/* <DropdownItem
                   key="settings"
                   textValue="settings"
                   style={{ textAlign: "center" }}
@@ -268,7 +263,7 @@ export default function Header() {
                     alt="cog icon"
                     src="/images/cog.svg"
                   />
-                </DropdownItem>
+                </DropdownItem> */}
               </DropdownSection>
               {user ? (
                 <DropdownItem
@@ -400,7 +395,7 @@ export default function Header() {
                     src="/images/prof.svg"
                   />
                 </DropdownItem>
-                <DropdownItem
+                {/* <DropdownItem
                   key="settings"
                   textValue="settings"
                   style={{ textAlign: "center" }}
@@ -421,7 +416,7 @@ export default function Header() {
                     alt="cog icon"
                     src="/images/cog.svg"
                   />
-                </DropdownItem>
+                </DropdownItem> */}
               </DropdownSection>
               {user ? (
                 <DropdownItem

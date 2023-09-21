@@ -41,54 +41,46 @@ export default function Home() {
           </div>
           <img className="home-logo" src="/images/pngegg.png" />
         </div>
-        <div className="max-w-1/2">
-          <div className="space-y-1 text-center">
+
+        <div className="max-w-1/2 text-center">
+          <h1 className="text-5xl">WELCOME</h1>
+          
+          <div className="space-y-1 text-center max-w-1/2 px-5">
+            <h4 className="text-large font-large">Personal Records</h4>
+
+            <p className="text-medium text-default-400 text-gray-300 ">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam.
+            </p>
+          </div>
+          <div className="space-y-1 text-center mt-2">
             <h4 className="text-large font-large">Programs</h4>
-            <p className="text-medium text-default-400">
+
+            <p className="text-medium text-default-400 text-gray-300">
               Join any of our programs, led by certified instructors.
             </p>
           </div>
           <Divider className="my-4" />
           <div className="flex h-5 justify-center align-center items-center space-x-4 text-small ">
-            <img
-              width={30}
-              alt="boxing"
-              src="./images/yoga.svg"
-            />
+            <img width={30} alt="boxing" src="./images/yoga.svg" />
             <Divider orientation="vertical" />
-            <img
-              width={30}
-              alt="cycling"
-              src="./images/cycle.svg"
-            />
+            <img width={30} alt="cycling" src="./images/cycle.svg" />
             <Divider orientation="vertical" />
-            <img
-              width={25}
-              alt="boxing"
-              src="./images/boxing.svg"
-            />
+            <img width={25} alt="boxing" src="./images/boxing.svg" />
           </div>
         </div>
       </div>
       <div
-        className="home-body"
-        style={{height: "max(100vh, 100vw)",backgroundColor: "#0d4324", color: "white" }}
+        className="home-body flex text-center items-center align-center justify-center"
+        style={{
+          height: "max(100vh, 100vw)",
+          backgroundImage: "url(/images/ai1.png)",
+        }}
       >
-        <div id="home-wrap">
-          <div style={{ width: "50%" }}>
-          </div>
-          <div style={{ width: "50%" }}>
-            <img
-              src="/images/boxing.svg"
-              style={{
-                height: "60px",
-                width: "60px",
-                filter: "hue-rotate(95deg)",
-              }}
-            />
-            image
-          </div>
-        </div>
+        <h1 className="welcome-page mb-3  italic uppercase text-black">
+            where fitness meets transformation
+          </h1>
       </div>
     </>
   );

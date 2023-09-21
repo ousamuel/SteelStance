@@ -16,8 +16,7 @@ import * as Yup from "yup";
 import { Context } from "../providers";
 
 export default function Signup() {
-  const { user, setUser } =
-    useContext(Context);
+  const { user, setUser } = useContext(Context);
   const [formikErr, setFormikErr] = React.useState("");
   const [selected, setSelected] = React.useState("login");
   const [wrongEmail, setWrongEmail] = React.useState(false);
@@ -91,7 +90,7 @@ export default function Signup() {
                 return response.json();
               } else if (response.status === 403) {
                 alert("username exists");
-                console.log(formik.values)
+                console.log(formik.values);
                 throw new Error("User already exists with that username");
               } else if (response.status === 401) {
                 alert("email exists");
@@ -171,7 +170,10 @@ export default function Signup() {
                     placeholder="Enter your email"
                     type="email"
                     onChange={formik.handleChange}
-                    style={wrongEmail ? { color: "red" } : null}
+                    // style={wrongEmail ? { color: "red" } : null}
+                    className={
+                      wrongEmail ? "rounded-xl border-2 border-rose-600" : null
+                    }
                   />
                   <Input
                     isRequired
@@ -180,7 +182,9 @@ export default function Signup() {
                     placeholder="Enter your password"
                     type="password"
                     onChange={formik.handleChange}
-                    style={wrongPass ? { color: "red" } : null}
+                    className={
+                      wrongPass ? "rounded-xl border-2 border-rose-600" : null
+                    }
                   />
 
                   <p className="text-center text-small">
@@ -217,31 +221,49 @@ export default function Signup() {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.username}
-                    style={
+                    className={
                       formik.touched.username && formik.errors.username
-                        ? { color: "red" }
+                        ? "rounded-xl border-2 border-rose-600"
                         : null
                     }
                   />
                   <Input
                     isRequired
                     name="email"
-                    label="Email"
+                    label={
+                      formik.touched.email && formik.errors.email
+                        ? "Email (johndoe@domain.xyz)"
+                        : "Email"
+                    }
                     placeholder="Enter your email"
                     type="email"
                     value={formik.values.email}
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
+                    className={
+                      formik.touched.email && formik.errors.email
+                        ? "rounded-xl border-2 border-rose-600"
+                        : null
+                    }
                   />
                   <Input
                     isRequired
                     name="password"
-                    label="Password"
+                    label={
+                      formik.touched.password && formik.errors.password
+                        ? "Password (at least 6 characters)"
+                        : "Password"
+                    }
                     placeholder="Enter your password"
                     type="password"
                     value={formik.values.password}
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
+                    className={
+                      formik.touched.password && formik.errors.password
+                        ? "rounded-xl border-2 border-rose-600"
+                        : null
+                    }
                   />
                   <Input
                     isRequired
@@ -256,9 +278,9 @@ export default function Signup() {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.confirm}
-                    style={
+                    className={
                       formik.touched.confirm && formik.errors.confirm
-                        ? { color: "red" }
+                        ? "rounded-xl border-2 border-rose-600"
                         : null
                     }
                   />

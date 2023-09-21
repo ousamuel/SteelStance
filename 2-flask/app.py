@@ -22,7 +22,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE
 HEX_SEC_KEY= 'd5fb8c4fa8bd46638dadc4e751e0d68d'
 app.config['SECRET_KEY']=HEX_SEC_KEY
-app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=30)
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=60)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 cors = FlaskCors(app, origins=["http://localhost:3000"], supports_credentials=True)
 app.config['REMEMBER_COOKIE_DOMAIN']= "http://localhost:3000"
@@ -50,17 +50,51 @@ class CurrentUser(Resource):
         user = current_user
         data = request.get_json()
         
+        if data.get('email'):
+            emailuser = User.query.filter(User.email == data["email"]).one_or_none()
+            if emailuser:
+                return make_response("user with email exists", 401)
+        if data.get('username'):
+            usernameuser = User.query.filter(User.username == data["username"]).one_or_none()
+            if usernameuser:
+                return make_response('user with username exists', 403)
+        for attr in data:
+            setattr(user, attr, data[attr])
+        db.session.add(user)
+        db.session.commit()
+        return make_response(user.to_dict(), 200)
+    @login_required
     def delete(self):
         user = current_user
+        
         if user:
+            records_to_delete = Record.query.filter(Record.user_id == user.id).all()
+            for record in records_to_delete:
+                db.session.delete(record)
+                db.session.commit()
             db.session.delete(user)
             db.session.commit()
             return make_response("deleted", 204)
         else:
             return make_response({"message": "User not found"}, 404)
-         
 api.add_resource(CurrentUser,'/currentUser')
 
+class UserProgram(Resource):
+    @login_required
+    def post(self):
+        user = current_user
+        program_id = request.json.get('program_id', None)
+        program = Program.query.get(program_id)
+        
+        if program not in user.programs:
+            user.programs.append(program)
+        else: 
+            user.programs.remove(program)
+            
+        db.session.add(user)
+        db.session.commit()
+        return make_response(user.to_dict(only=('programs',)), 202)
+api.add_resource(UserProgram, '/userProgram')
 class Users(Resource):
     def get(self):
         users = User.query.all()
@@ -68,12 +102,12 @@ class Users(Resource):
         return make_response(users_ser, 200)
 api.add_resource(Users,'/users')
 
-class UserById(Resource):
-    def patch(self, id):
-        height_ft = request.json.get('height_ft', None)
-        weight_lb = request.json.get('weight_lb', None)
-        pass;
-api.add_resource(UserById, '/user/<int:id>')
+# class UserById(Resource):
+#     def patch(self, id):
+#         height_ft = request.json.get('height_ft', None)
+#         weight_lb = request.json.get('weight_lb', None)
+#         pass;
+# api.add_resource(UserById, '/user/<int:id>')
 
 class Signups(Resource):
     def post(self):
@@ -137,7 +171,6 @@ class Logout(Resource):
       user.authenticated = False
       db.session.add(user)
       db.session.commit()
-    #   Session.clear()
       logout_user()
       return 'You are logged out'
 api.add_resource(Logout, '/logout')
@@ -147,14 +180,15 @@ class Records(Resource):
         records = Record.query.all()
         records_ser=[r.to_dict(rules=('-user',)) for r in records]
         return make_response(records_ser, 200)
+    @login_required
     def post(self):
-        record = Record()
         data=request.get_json()
+        record = Record()
         for attr in data:
             setattr(record, attr, data[attr])
         db.session.add(record)
         db.session.commit()
-        return make_response(record.to_dict(), 204)
+        return make_response(record.to_dict(), 200)
 api.add_resource(Records, "/records")
 
 class Programs(Resource):
@@ -163,12 +197,7 @@ class Programs(Resource):
         programs_ser=[p.to_dict() for p in programs]
         return make_response(programs_ser, 200)
 api.add_resource(Programs, '/programs')
-# class RecordsById(Resource):
-#     def get(self, id):
-#         records = Record.query.filter(Record.id == id)
-#         records_ser = [r.to_dict() for r in records]
-#         return make_response(records_ser, 200)
-# api.add_resource(RecordsById, '/records/<int:id>')
 if __name__ == "__main__":
 
     app.run(port=5555, debug = True )
+    

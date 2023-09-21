@@ -94,7 +94,7 @@ body {
   justify-content: space-evenly;
 }
 .link {
-  transition: color 0.2s;
+  transition: color 0.5s;
 }
 
 .main-body {
@@ -110,6 +110,7 @@ body {
 }
 .home-body {
   height: max(90vh, 90vw);
+  max-height: 850px;
   overflow-y: auto;
 }
 #home-wrap {
@@ -132,14 +133,14 @@ body {
 
     */
 .left-acc {
-  width: 40%;
+  width: 50%;
   margin-top: 3%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .right-acc {
-  width: 60%;
+  width: 50%;
   padding: 10px;
 }
 .login-button {
@@ -250,14 +251,32 @@ h3 {
 }
 .program-div{
   /* max-width: min(50vw, 50vh); */
-  padding-top: 5%;
+  /* background-color: #003c1a; */
+  min-height:90vh;
+  /* padding-top: 5%; */
   padding-bottom:5%;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
+}
+.program-div > :last-child{
+  width:100%;
+  text-align:center;
+  /* order:-1; */
+}
+.self-program-div{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.welcome-page{
+  font-size: 50px;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color:#12a150;
 }
 @media screen and (max-width: 639px) {
   .program-div{
@@ -290,5 +309,8 @@ h3 {
   }
   h1 {
     font-size: 30px;
+  }
+  .welcome-page{
+    font-size:35px;
   }
 }

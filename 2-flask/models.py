@@ -37,7 +37,7 @@ class User(db.Model, SerializerMixin):
     hash = db.Column(db.Text, nullable=False)
     records = db.relationship('Record', backref = 'user')
     programs = db.relationship('Program', cascade ='all, delete', secondary=user_program, back_populates='users')
-    serialize_rules=('-records.user', '-programs.users')
+    serialize_rules=('-records.user', '-programs.users', '-hash', '-authenticated' )
     def is_active(self):
         return True
     
@@ -56,7 +56,8 @@ class Record(db.Model, SerializerMixin):
     # type will only be Deadlift, Squat, or Bench
     
     gender = db.Column(db.String)
-    weight_lb = db.Column(db.Integer)
+    body_weight = db.Column(db.Integer, nullable=False)
+    weight_lb = db.Column(db.Integer, nullable=False)
     date = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     serialize_rules=('-user.records',)
@@ -68,6 +69,8 @@ class Program(db.Model, SerializerMixin):
     type = db.Column(db.String, nullable=False)
     level = db.Column(db.String, nullable=False)
     # Cycling, Pilates, Kickboxing
+    src = db.Column(db.String, unique=True)
+    color = db.Column(db.String)
     days = db.Column(db.String, default="TBD")
     time = db.Column(db.String, default="TBD")
     users = db.relationship('User', cascade ='all, delete', secondary=user_program, back_populates='programs')
