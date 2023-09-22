@@ -1,12 +1,36 @@
 "use client";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "./providers";
 import { useFormik } from "formik";
-import { Divider } from "@nextui-org/react";
+import { Divider, Input, Button, Tooltip } from "@nextui-org/react";
 
 export default function Home() {
   const { setIsMenuOpen, user } = useContext(Context);
+  const [weight, setWeight] = useState(0);
+  const [feet, setFeet] = useState(0);
+  const [inches, setInches] = useState(0);
+  const [bmi, setBMI] = useState(0);
+  const [color, setColor] = useState("");
 
+  // <span>Underweight: BMI is less than 18.5</span>
+  //   <span>Normal weight: BMI is 18.5 to 24.9</span>
+  //   <span>Overweight: BMI is 25 to 29.9</span>
+  //   <span>Obesity: BMI is 30 or more</span>
+  function calculate() {
+    const calcBMI =
+      Math.round(((weight * 703) / (feet * 12 + parseInt(inches)) ** 2) * 10) /
+      10;
+    if (calcBMI < 18.5) {
+      setColor("yellow");
+    } else if (calcBMI >= 18.5 && calcBMI < 24.9) {
+      setColor("green");
+    } else if (calcBMI >= 25 && calcBMI <= 29.9) {
+      setColor("orange");
+    } else if (calcBMI > 30) {
+      setColor("red");
+    }
+    setBMI(calcBMI);
+  }
   return (
     <>
       <div className="home-body" style={{ backgroundColor: "#12A150" }}>
@@ -79,7 +103,7 @@ export default function Home() {
         </div>
       </div>
       <div
-        className="home-body flex text-center items-center align-center justify-center"
+        className="home-body flex flex-col text-center items-center align-center justify-center"
         style={{
           height: "100vh",
           backgroundImage: "url(/images/ai1.png)",
@@ -91,6 +115,85 @@ export default function Home() {
         <h1 className="welcome-page mb-3  mx-2 italic uppercase px-4 text-black">
           where fitness meets transformation
         </h1>
+        <div className="flex flex-wrap align-center items-center justify-center">
+          <div className="p-4 bg-gray-200 rounded-lg">
+            <Tooltip
+              content="Note: BMI doesn't directly measure body fat and it's not a diagnostic tool. For example, a very muscular person might be classified as overweight or obese when they are actually in good health."
+              variant="flat"
+              closeDelay={0}
+              className="max-w-[300px]"
+            >
+              <h2 className="mx-5">BMI Calculator</h2>
+            </Tooltip>
+            <p className="max-w-[300px] text-sm">
+              {" "}
+              Body Mass Index provides a rough estimate of whether a person's
+              weight falls within a healthy range.
+            </p>
+            <div className="mt-2 space-y-1">
+              <div className="flex items-center">
+                <div className="w-4 h-4 bg-yellow-500 rounded mr-2"></div>
+                <span>Underweight: BMI is less than 18.5</span>
+              </div>
+              <div className="flex items-center">
+                <div className="w-4 h-4 bg-green-500 rounded mr-2"></div>
+                <span>Healthy weight: BMI is 18.5 to 24.9</span>
+              </div>
+              <div className="flex items-center">
+                <div className="w-4 h-4 bg-orange-500 rounded mr-2"></div>
+                <span>Overweight: BMI is 25 to 29.9</span>
+              </div>
+              <div className="flex items-center">
+                <div className="w-4 h-4 bg-red-500 rounded mr-2"></div>
+                <span>Obesity: BMI is 30 or more</span>
+              </div>
+            </div>
+          </div>
+          {/* weight (lb) / [height (in)]2 x 703 */}
+          <div className="flex flex-col">
+            <Input
+              isRequired
+              name="feet"
+              type="number"
+              endContent="ft"
+              onChange={(e) => {
+                setFeet(e.target.value);
+              }}
+              placeholder="Feet"
+              className="max-w-[90px]"
+            />
+            <Input
+              isRequired
+              endContent="in"
+              name="inches"
+              type="number"
+              onChange={(e) => {
+                setInches(e.target.value);
+              }}
+              placeholder="Inches"
+              className="max-w-[90px]"
+            />
+            <Input
+              isRequired
+              endContent="lbs"
+              name="weight"
+              type="number"
+              onChange={(e) => {
+                setWeight(e.target.value);
+              }}
+              placeholder="Wt"
+              className="max-w-[90px]"
+            />
+            <Button onClick={calculate} fullWidth color="primary">
+              Calculate
+            </Button>{" "}
+          </div>
+          {bmi ? (
+            <div className={`p-2 bg-${color}-500 rounded mr-2`}>
+              My BMI is: {bmi}
+            </div>
+          ) : null}
+        </div>
       </div>
     </>
   );

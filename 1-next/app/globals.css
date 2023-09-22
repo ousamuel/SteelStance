@@ -109,14 +109,14 @@ body {
   text-align: center;
 }
 .home-body {
-  /* height: max(90vh, 90vw);
-  max-height: 912px; */
-  height:90vh;
+  height: max(90vh, 50vw);
+  /* max-height: 912px; */
+  /* height:90vh; */
   overflow-y: auto;
 }
 #home-wrap {
-  margin: 8%;
-  margin-bottom: 5%;
+  margin: 5%;
+  /* margin-bottom: 5%; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -281,7 +281,7 @@ h3 {
   margin-left: 5vw;
   margin-right: 5vw;
   -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color:#12a150;
+  -webkit-text-stroke-color:#ffffff;
 }
 @media screen and (max-width: 639px) {
   .program-div{
