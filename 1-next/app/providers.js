@@ -51,7 +51,7 @@ export function Providers({ children }) {
         setPrograms(data);
       })
       .catch((error) => console.error("Error fetching program data:", error));
-  }, [refresh, user]);
+  }, [refresh]);
   if (loading) {
     return (
       <div className="h-screen w-screen flex justify-center align-center items-center">

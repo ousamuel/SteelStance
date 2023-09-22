@@ -82,6 +82,9 @@ body {
   color: blue;
   cursor: pointer;
 }
+.link {
+  transition: color 0.5s;
+}
 .sub-header {
   height: 110px;
   font-size: 25px;
@@ -92,9 +95,6 @@ body {
   text-align: center;
   align-items: center;
   justify-content: space-evenly;
-}
-.link {
-  transition: color 0.5s;
 }
 
 .main-body {

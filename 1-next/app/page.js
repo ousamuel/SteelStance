@@ -43,17 +43,25 @@ export default function Home() {
         </div>
 
         <div className="max-w-1/2 text-center">
-          <h1 className="text-5xl">WELCOME</h1>
-          
+          <h1 className="text-5xl mb-2 text-white">WELCOME</h1>
+          <Divider className="my-2" />
+
           <div className="space-y-1 text-center max-w-1/2 px-5">
             <h4 className="text-large font-large">Personal Records</h4>
 
             <p className="text-medium text-default-400 text-gray-300 ">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam.
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
           </div>
+          <div className="flex my-4 h-5 justify-center align-center items-center space-x-4 text-small ">
+            <img width={25} alt="boxing" src="./images/squat.svg" />
+            <Divider orientation="vertical" />
+            <img width={30} alt="cycling" src="./images/bench.svg" />
+            <Divider orientation="vertical" />
+            <img width={25} alt="boxing" src="./images/dl.svg" />
+          </div>
+          <Divider className="my-2" />
           <div className="space-y-1 text-center mt-2">
             <h4 className="text-large font-large">Programs</h4>
 
@@ -61,8 +69,7 @@ export default function Home() {
               Join any of our programs, led by certified instructors.
             </p>
           </div>
-          <Divider className="my-4" />
-          <div className="flex h-5 justify-center align-center items-center space-x-4 text-small ">
+          <div className="flex my-3 h-5 justify-center align-center items-center space-x-4 text-small ">
             <img width={30} alt="boxing" src="./images/yoga.svg" />
             <Divider orientation="vertical" />
             <img width={30} alt="cycling" src="./images/cycle.svg" />
@@ -79,8 +86,8 @@ export default function Home() {
         }}
       >
         <h1 className="welcome-page mb-3  italic uppercase text-black">
-            where fitness meets transformation
-          </h1>
+          where fitness meets transformation
+        </h1>
       </div>
     </>
   );

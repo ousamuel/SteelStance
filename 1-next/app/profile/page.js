@@ -725,6 +725,8 @@ export default function Profile() {
             />
           ))}
         </div>
+        <Divider className="my-4" />
+
         <div className="flex flex-col items-center align-center">
           <Button
             className="px-unit-4 py-unit-1 min-w-unit-3xl my-2"

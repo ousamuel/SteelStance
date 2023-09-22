@@ -158,15 +158,17 @@ export default function Boxing() {
           user={user}
         />
       ))}
-      <div>
-        <Button
-          className=" justify-center items-center m-auto my-[15px]"
-          onClick={() => router.push("/sign-up")}
-        >
-          {" "}
-          Sign up/Log In To Save
-        </Button>
-      </div>
+      {user ? <div></div> : (
+        <div>
+          <Button
+            className=" justify-center items-center m-auto my-[15px]"
+            onClick={() => router.push("/sign-up")}
+          >
+            {" "}
+            Sign up/Log In To Save
+          </Button>
+        </div>
+      )}
     </div>
   );
 }
