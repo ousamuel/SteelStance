@@ -81,11 +81,14 @@ export default function Home() {
       <div
         className="home-body flex text-center items-center align-center justify-center"
         style={{
-          height: "max(100vh, 100vw)",
+          height: "100vh",
           backgroundImage: "url(/images/ai1.png)",
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
         }}
       >
-        <h1 className="welcome-page mb-3  italic uppercase text-black">
+        <h1 className="welcome-page mb-3  mx-2 italic uppercase px-4 text-black">
           where fitness meets transformation
         </h1>
       </div>

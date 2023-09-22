@@ -109,8 +109,9 @@ body {
   text-align: center;
 }
 .home-body {
-  height: max(90vh, 90vw);
-  max-height: 850px;
+  /* height: max(90vh, 90vw);
+  max-height: 912px; */
+  height:90vh;
   overflow-y: auto;
 }
 #home-wrap {
@@ -274,7 +275,11 @@ h3 {
   align-items: center;
 }
 .welcome-page{
-  font-size: 50px;
+  border-radius: 20px;
+  background-color:hsla(120,100%,75%,0.25);
+  font-size: 55px;
+  margin-left: 5vw;
+  margin-right: 5vw;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color:#12a150;
 }

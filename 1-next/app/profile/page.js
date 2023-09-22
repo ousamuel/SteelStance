@@ -46,7 +46,7 @@ function ProgramCard({ program, handleSave, user }) {
       style={{
         borderColor: program.color,
         boxShadow: `0px 0px 10px ${program.color}`,
-        backgroundColor: "#a1a1a1"
+        backgroundColor: "#a1a1a1",
       }}
     >
       <CardHeader className={`pb-0 pt-2 px-4 flex-col items-start `}>
@@ -61,7 +61,7 @@ function ProgramCard({ program, handleSave, user }) {
               className="float-right"
               isSelected={toggle}
               // isDisabled={toggle}
-              icon={<DeleteIcon/>}
+              icon={<DeleteIcon />}
               onClick={() => setToggle((prevstate) => !prevstate)}
               onChange={(event) => handleSave(program, event)}
               color="danger"
@@ -71,9 +71,7 @@ function ProgramCard({ program, handleSave, user }) {
         <small className="text-default-500 text-gray-300 max-w-[270px]">
           {program.instructor.bio}
         </small>
-        <h4 className="font-bold text-2xl text-white" >
-          {program.type}
-        </h4>
+        <h4 className="font-bold text-2xl text-white">{program.type}</h4>
         <h4 className="font-bold text-medium" style={{ color: program.color }}>
           {program.level}
         </h4>
@@ -85,7 +83,7 @@ function ProgramCard({ program, handleSave, user }) {
         </small>
       </CardHeader>
       {/* <CardBody className="overflow-visible py-2 justify-center align-center"> */}
-        {/* <Image
+      {/* <Image
           alt="Card background"
           className="object-cover rounded-xl"
           src={program.src}
@@ -108,6 +106,7 @@ export default function Profile() {
     programs,
     handleSave,
     loading,
+    setRefresh
   } = useContext(Context);
   const [editing, setEditing] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -332,6 +331,7 @@ export default function Profile() {
       })
       .then(() => {
         setUser(null);
+        setRefresh((prevstate) => !prevstate);
         // setRefresh(prevstate=>!prevstate)
         router.push("/");
       })
@@ -634,8 +634,7 @@ export default function Profile() {
                       display: "inline",
                       paddingBottom: "3px",
                       marginLeft: "3px",
-                      borderRadius:"0px"
-
+                      borderRadius: "0px",
                     }}
                     width={30}
                     height={30}
@@ -646,17 +645,13 @@ export default function Profile() {
                   />
                 </Tooltip>
                 <Divider orientation="vertical" />
-                <Tooltip
-                  content="Records"
-                  variant="flat"
-                  closeDelay={0}
-                >
+                <Tooltip content="Records" variant="flat" closeDelay={0}>
                   <Image
                     style={{
                       display: "inline",
                       paddingBottom: "3px",
                       marginLeft: "3px",
-                      borderRadius:"0px"
+                      borderRadius: "0px",
                     }}
                     width={25}
                     height={25}

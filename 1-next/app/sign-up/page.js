@@ -135,6 +135,7 @@ export default function Signup() {
       className="home-body"
       style={{
         backgroundColor: "#0a5329",
+        maxHeight:"90vh",
         display: "flex",
         flexWrap: "wrap",
         alignItems: "center",

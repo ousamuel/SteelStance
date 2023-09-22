@@ -20,7 +20,7 @@ import {
   Button,
 } from "@nextui-org/react";
 
-export default function Squat() {
+export default function Records() {
   const router = useRouter();
   const { setRefresh, records, setRecords, user, categoryArr, setCategoryArr } =
     useContext(Context);
