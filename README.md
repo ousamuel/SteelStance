@@ -4,6 +4,19 @@ This is a [Next.js](https://nextjs.org/) project with a backend powered by [`Fla
 
 [![Home Page Screen Shot](images/home-ss.png)](https://raw.githubusercontent.com/ousamuel/fitness-app/main/images/home-ss.png)
 
+## Introduction
+Welcome to my individually developed full stack application, using the framework Next.js with a Flask backend.
+
+Front-end Integrations:
+- Formik for form management
+- useContext for state management
+- NextUI library for UI components
+
+Back-end Integrations:
+- authentication mechanisms via Flask-Login and Flask-Bcrypt for secure session management and password hashing
+- object-relational mapping utilizing SQLAlchemy
+- RESTful API with full CRUD + CORS for cross-origin requests
+
 ## Features
 - Custom-built User Authentication
 - User Login/Sign Up
@@ -31,7 +44,9 @@ bash setup.sh
 ```
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-
+By default:
+Next.js server is ran on port 3000
+Flask applications is ran on port 5500 
 
 
 <!-- 
