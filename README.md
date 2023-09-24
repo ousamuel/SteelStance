@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project with a backend powered by [`Fla
 
 # Fitness App
 
-![Home Page Screen Shot](images/home-ss.png)
+![Home Page Screen Shot](images/home-ss.png)(https://raw.githubusercontent.com/ousamuel/fitness-app/main/images/home-ss.png)
 
 ## Features
 - Custom-built User Authentication
