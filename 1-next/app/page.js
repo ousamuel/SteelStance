@@ -12,10 +12,6 @@ export default function Home() {
   const [bmi, setBMI] = useState(0);
   const [color, setColor] = useState("");
 
-  // <span>Underweight: BMI is less than 18.5</span>
-  //   <span>Normal weight: BMI is 18.5 to 24.9</span>
-  //   <span>Overweight: BMI is 25 to 29.9</span>
-  //   <span>Obesity: BMI is 30 or more</span>
   function calculate() {
     const calcBMI =
       Math.round(((weight * 703) / (feet * 12 + parseInt(inches)) ** 2) * 10) /
@@ -115,7 +111,7 @@ export default function Home() {
         <h1 className="welcome-page mb-3  mx-2 italic uppercase px-4 text-black">
           where fitness meets transformation
         </h1>
-        <div className="flex flex-wrap align-center items-center justify-center">
+        <div className="text-black flex flex-wrap align-center items-center justify-center">
           <div className="p-4 bg-gray-200 rounded-lg">
             <Tooltip
               content="Note: BMI doesn't directly measure body fat and it's not a diagnostic tool. For example, a very muscular person might be classified as overweight or obese when they are actually in good health."
