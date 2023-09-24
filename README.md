@@ -57,8 +57,17 @@ Terminal 2: cd into the 2-flask directory
 ```bash
 python app.py
 ```
+To re-seed the database with sample data:
+```bash
+python seed.py
+```
+
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+Sample User Logins(1-5):
+- email: user1@gmail.com
+- password: user1pass
 
 By default:
 Next.js server is ran on port 3000 & Flask application is ran on port 5500 
