@@ -11,10 +11,8 @@ This is a [Next.js](https://nextjs.org/) project with a backend powered by [`Fla
 - Viewing Other Personal Records (sortable through various categories)
 - Post Personal Records
 - Save/Unsave Workout Programs
-- 
 
 ## Acknowledgements
-- 
 - [`Flask-Login`](https://flask-login.readthedocs.io/en/latest/)
 - [`SVG Vectors/Icons`](https://www.svgrepo.com/)
 ## Getting Started
