@@ -48,7 +48,7 @@ if __name__ == '__main__':
         in1 = Instructor(first_name="John", bio="Vel facilisis volutpat est velit egestas dui id ornare. Enim nulla aliquet porttitor lacus luctus accumsan tortor posuere.")
         in2 = Instructor(first_name="Emily", bio="Et malesuada fames ac turpis egestas sed tempus urna. Purus sit amet volutpat consequat mauris nunc congue nisi. ")
         in3 = Instructor(first_name="Max", bio="Id ornare arcu odio ut sem. Nunc sed augue lacus viverra.")
-        in4 = Instructor(first_name="Kevin", bio="my name is kevin, abcdef kevin, my name is kevin, abcdef kevin")
+        in4 = Instructor(first_name="Kevin", bio="Nam aliquam sem et tortor consequat. Quisque sagittis purus sit amet volutpat consequat mauris. Dolor sit amet consectetur adipiscing.")
         in5 = Instructor(first_name="Stephanie", bio="Velit dignissim sodales ut eu sem integer vitae justo eget. Ultricies leo integer malesuada nunc.")
         in6 = Instructor(first_name="Steven", bio="Tincidunt augue interdum velit euismod. Diam sit amet nisl suscipit.")
         ins = [in1, in2, in3, in4, in5, in6]

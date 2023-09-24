@@ -51,7 +51,7 @@ class CurrentUser(Resource):
         data = request.get_json()
         
         if data.get('email'):
-            emailuser = User.query.filter(User.email == data["email"]).one_or_none()
+            emailuser = Uaser.query.filter(User.email == data["email"]).one_or_none()
             if emailuser:
                 return make_response("user with email exists", 401)
         if data.get('username'):
