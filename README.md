@@ -5,17 +5,10 @@ This is a [Next.js](https://nextjs.org/) project with a backend powered by [`Fla
 [![Home Page Screen Shot](images/home-ss.png)](https://raw.githubusercontent.com/ousamuel/fitness-app/main/images/home-ss.png)
 
 ## Introduction
-Welcome to my individually developed full stack application, using the framework Next.js with a Flask backend.
+Welcome to SteelStance, a full-stack fitness application, using the framework Next.js with a Flask backend. Users can calculate their BMI on the home page, view other users' personal records for powerlifts (squat, bench, deadlift) and view different workout programs.
+(The database is pre-seeded with sample data for programs and 5 users with personal records).
 
-Front-end Integrations:
-- Formik for form management
-- useContext for state management
-- NextUI library for UI components
-
-Back-end Integrations:
-- authentication mechanisms via Flask-Login and Flask-Bcrypt for secure session management and password hashing
-- object-relational mapping utilizing SQLAlchemy
-- RESTful API with full CRUD + CORS for cross-origin requests
+After signing up/logging in, users can submit their own personal records and save workout programs, both viewable in their profile page. Users can edit their account information (username, email, height, weight) and delete their profile. If their profile is deleted, their respective personal records are also deleted.
 
 ## Features
 - Custom-built User Authentication
@@ -24,6 +17,17 @@ Back-end Integrations:
 - Viewing Other Personal Records (sortable through various categories)
 - Post Personal Records
 - Save/Unsave Workout Programs
+
+Front-end Integrations:
+- Formik for form management
+- useContext for state management
+- NextUI library for UI components
+
+Back-end Integrations:
+- Authentication mechanisms via Flask-Login and Flask-Bcrypt for secure session management and password hashing
+- Object-relational mapping utilizing SQLAlchemy
+- RESTful API with full CRUD + CORS for cross-origin requests
+
 
 ## Acknowledgements
 - [`Flask-Login`](https://flask-login.readthedocs.io/en/latest/)
