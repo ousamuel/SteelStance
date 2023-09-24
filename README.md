@@ -1,14 +1,15 @@
 This is a [Next.js](https://nextjs.org/) project with a backend powered by [`Flask and SQLAlchemy`](https://flask-sqlalchemy.palletsprojects.com/en/3.1.x/) and Tailwind CSS for UX.
 
-# Fitness App
+# SteelStance
 
 [![Home Page Screen Shot](images/home-ss.png)](https://raw.githubusercontent.com/ousamuel/fitness-app/main/images/home-ss.png)
 
 ## Introduction
 Welcome to SteelStance, a full-stack fitness application, using the framework Next.js with a Flask backend. Users can calculate their BMI on the home page, view other users' personal records for powerlifts (squat, bench, deadlift) and view different workout programs.
-(The database is pre-seeded with sample data for programs and 5 users with personal records).
 
-After signing up/logging in, users can submit their own personal records and save workout programs, both viewable in their profile page. Users can edit their account information (username, email, height, weight) and delete their profile. If their profile is deleted, their respective personal records are also deleted.
+After signing up/logging in, users can submit their own personal records and save workout programs, both viewable in their profile page. Users can edit their account information (username, email, height, weight) and delete their profile. If their profile is deleted, their personal records are also deleted.
+
+(The database is pre-seeded with sample data for programs and 5 users with personal records).
 
 ## Features
 - Custom-built User Authentication
@@ -40,17 +41,27 @@ Clone the repository
 git clone git@github.com:ousamuel/fitness-app.git
 ```
 
-Install dependencies and run servers
+Install all required dependencies and run servers
 ```bash
 chmod +x setup.sh
-
 bash setup.sh
 ```
+
+Open two different terminals
+
+Terminal 1: cd into the 1-next directory
+```bash
+npm run dev
+```
+Terminal 2: cd into the 2-flask directory
+```bash
+python app.py
+```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 By default:
-Next.js server is ran on port 3000
-Flask applications is ran on port 5500 
+Next.js server is ran on port 3000 & Flask application is ran on port 5500 
 
 
 <!-- 
