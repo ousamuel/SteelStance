@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project with a backend powered by [`Flask and SQLAlchemy`](https://flask-sqlalchemy.palletsprojects.com/en/3.1.x/) and Tailwind CSS for UX.
+This is a [Next.js](https://nextjs.org/) project with a backend powered by [Flask and SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/3.1.x/) and Tailwind CSS for UX.
 
 # SteelStance
 
@@ -7,7 +7,7 @@ This is a [Next.js](https://nextjs.org/) project with a backend powered by [`Fla
 ## Introduction
 Welcome to SteelStance, a full-stack fitness application, using the framework Next.js with a Flask backend. Users can calculate their BMI on the home page, view other users' personal records for powerlifts (squat, bench, deadlift) and view different workout programs.
 
-After signing up/logging in, users can submit their own personal records and save workout programs, both viewable in their profile page. Users can edit their account information (username, email, height, weight) and delete their profile. If their profile is deleted, their personal records are also deleted.
+After signing up/logging in through authentication, users can submit their own personal records and save workout programs, both viewable in their profile page. Users can edit their account information (username, email, height, weight) and delete their profile. If their profile is deleted, their personal records are also deleted.
 
 (The database is pre-seeded with sample data for programs and 5 users with personal records).
 
@@ -25,14 +25,14 @@ Front-end Integrations:
 - NextUI library for UI components
 
 Back-end Integrations:
-- Authentication mechanisms via Flask-Login and Flask-Bcrypt for secure session management and password hashing
+- User authentication via Flask-Login and Flask-Bcrypt for secure session management and password hashing
 - Object-relational mapping utilizing SQLAlchemy
 - RESTful API with full CRUD + CORS for cross-origin requests
 
 
 ## Acknowledgements
-- [`Flask-Login`](https://flask-login.readthedocs.io/en/latest/)
-- [`SVG Vectors/Icons`](https://www.svgrepo.com/)
+- [NextUI](https://nextui.org/)
+- [SVG Vectors/Icons](https://www.svgrepo.com/)
 
 ## To run this repository on your local machine: 
 
@@ -41,7 +41,7 @@ Clone the repository
 git clone git@github.com:ousamuel/fitness-app.git
 ```
 
-Install all required dependencies and run servers
+Install all required dependencies
 ```bash
 chmod +x setup.sh
 bash setup.sh
@@ -70,7 +70,7 @@ Sample User Logins(1-5):
 - password: user1pass
 
 By default:
-Next.js server is ran on port 3000 & Flask application is ran on port 5500 
+Next.js server is ran on port 3000 & Flask application on port 5500 
 
 
 <!-- 

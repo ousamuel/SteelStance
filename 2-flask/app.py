@@ -8,16 +8,15 @@ from flask_session import Session
 from flask_bcrypt import Bcrypt
 from sqlalchemy.exc import IntegrityError
 from datetime import timedelta
+import os
 
 
 app = Flask(__name__)
 f_bcrypt = Bcrypt(app)
 Session(app)
-import os, bcrypt
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DATABASE = os.environ.get(
     "DB_URI", f"sqlite:///{os.path.join(BASE_DIR, 'app.db')}")
-
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE
 HEX_SEC_KEY= 'd5fb8c4fa8bd46638dadc4e751e0d68d'
@@ -51,7 +50,7 @@ class CurrentUser(Resource):
         data = request.get_json()
         
         if data.get('email'):
-            emailuser = Uaser.query.filter(User.email == data["email"]).one_or_none()
+            emailuser = User.query.filter(User.email == data["email"]).one_or_none()
             if emailuser:
                 return make_response("user with email exists", 401)
         if data.get('username'):
@@ -102,12 +101,6 @@ class Users(Resource):
         return make_response(users_ser, 200)
 api.add_resource(Users,'/users')
 
-# class UserById(Resource):
-#     def patch(self, id):
-#         height_ft = request.json.get('height_ft', None)
-#         weight_lb = request.json.get('weight_lb', None)
-#         pass;
-# api.add_resource(UserById, '/user/<int:id>')
 
 class Signups(Resource):
     def post(self):
