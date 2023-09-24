@@ -1,7 +1,8 @@
 This is a [Next.js](https://nextjs.org/) project with a backend powered by [`Flask and SQLAlchemy`](https://flask-sqlalchemy.palletsprojects.com/en/3.1.x/) and Tailwind CSS for UX.
 
 # Fitness App
-![Home Page Screen Shot][images/home-ss.png]
+
+![Home Page Screen Shot](images/home-ss.png)
 
 ## Features
 - Custom-built User Authentication
