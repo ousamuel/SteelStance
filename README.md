@@ -16,21 +16,22 @@ This is a [Next.js](https://nextjs.org/) project with a backend powered by [`Fla
 - [`Flask-Login`](https://flask-login.readthedocs.io/en/latest/)
 - [`SVG Vectors/Icons`](https://www.svgrepo.com/)
 
-## To
+## To run this repository on your local machine: 
 
-First, install all necessary dependencies
+Clone the repository
+```bash
+git clone git@github.com:ousamuel/fitness-app.git
+```
+
+Install dependencies and run servers
 ```bash
 chmod +x setup.sh
-```
 
-run the development server:
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+bash setup.sh
 ```
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+
 
 
 <!-- 
