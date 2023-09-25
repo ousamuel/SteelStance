@@ -108,13 +108,13 @@ export default function Home() {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <h1 className="welcome-page mb-3  mx-2 italic uppercase px-4 text-black">
+        <h1 className="welcome-page mb-3 mx-2 italic uppercase px-4 text-black">
           where fitness meets transformation
         </h1>
         <div className="text-black flex flex-wrap align-center items-center justify-center">
           <div className="p-4 bg-gray-200 rounded-lg">
             <Tooltip
-              content="Note: BMI doesn't directly measure body fat and it's not a diagnostic tool. For example, a very muscular person might be classified as overweight or obese when they are actually in good health."
+              content="Note: BMI does not directly measure body fat and it is not a diagnostic tool. For example, a very muscular person might be classified as overweight or obese when they are actually in good health."
               variant="flat"
               closeDelay={0}
               className="max-w-[300px]"
@@ -123,7 +123,7 @@ export default function Home() {
             </Tooltip>
             <p className="max-w-[300px] text-sm">
               {" "}
-              Body Mass Index provides a rough estimate of whether a person's
+              Body Mass Index provides a rough estimate of whether or not your
               weight falls within a healthy range.
             </p>
             <div className="mt-2 space-y-1">
@@ -182,7 +182,7 @@ export default function Home() {
             />
             <Button onClick={calculate} fullWidth color="primary">
               Calculate
-            </Button>{" "}
+            </Button>
           </div>
           {bmi ? (
             <div className={`p-2 bg-${color}-500 rounded mr-2`}>

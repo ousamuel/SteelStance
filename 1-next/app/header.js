@@ -53,18 +53,20 @@ export default function Header() {
           handleSelection(program.route);
         }}
       >
-        {program.name}
-        <Image
-          style={{
-            display: "inline",
-            paddingBottom: "3px",
-            marginLeft: "3px",
-          }}
-          width={15}
-          height={15}
-          alt={program.src}
-          src={program.src}
-        />
+        <span style={{ display: "inline-flex", alignItems: "center" }}>
+          {program.name}
+          <Image
+            style={{
+              display: "inline",
+              paddingBottom: "3px",
+              marginLeft: "3px",
+            }}
+            width={15}
+            height={15}
+            alt={program.src}
+            src={program.src}
+          />
+        </span>
       </DropdownItem>
     );
   });
@@ -79,18 +81,20 @@ export default function Header() {
           handleSelection(program.route);
         }}
       >
-        {program.name}
-        <Image
-          style={{
-            display: "inline",
-            paddingBottom: "3px",
-            marginLeft: "3px",
-          }}
-          width={15}
-          height={15}
-          alt={program.src}
-          src={program.src}
-        />
+        <span style={{ display: "inline-flex", alignItems: "center" }}>
+          {program.name}
+          <Image
+            style={{
+              display: "inline",
+              paddingBottom: "3px",
+              marginLeft: "3px",
+            }}
+            width={15}
+            height={15}
+            alt={program.src}
+            src={program.src}
+          />
+        </span>
       </DropdownItem>
     );
   });
@@ -185,14 +189,14 @@ export default function Header() {
 
       <NavbarContent className="hidden sm:flex gap-4 text-2xl" justify="center">
         <NavbarItem>
-          <Link color="foreground" href="/" className='link'>
+          <Link color="foreground" href="/" className="link">
             HOME
           </Link>
         </NavbarItem>
         <NavbarItem>
           <Dropdown id="program-dropdown">
-            <DropdownTrigger >
-              <a className='link'>
+            <DropdownTrigger>
+              <a className="link">
                 PROGRAMS
                 <span className="dropdown-icon" />
               </a>
@@ -207,14 +211,14 @@ export default function Header() {
           </Dropdown>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="/personal-records" className='link'>
+          <Link color="foreground" href="/personal-records" className="link">
             PERSONAL RECORDS
           </Link>
         </NavbarItem>
         <NavbarItem>
           <Dropdown id="account-dropdown">
             <DropdownTrigger>
-              <a className='link' style={{ textAlign: "center" }}>
+              <a className="link" style={{ textAlign: "center" }}>
                 ACCOUNT
                 <span className="dropdown-icon" />
               </a>
@@ -232,25 +236,29 @@ export default function Header() {
                   style={{ textAlign: "center" }}
                   onPress={() => handleSelection("/profile")}
                 >
-                  PROFILE
-                  <Image
-                    style={{
-                      display: "inline",
-                      paddingBottom: "3px",
-                      marginLeft: "3px",
-                    }}
-                    width={15}
-                    height={15}
-                    alt="profile icon"
-                    src="/images/prof.svg"
-                  />
+                  <span
+                    style={{ display: "inline-flex", alignItems: "center" }}
+                  >
+                    PROFILE
+                    <Image
+                      style={{ marginLeft: "3px" }}
+                      width={15}
+                      height={15}
+                      alt="profile icon"
+                      src="/images/prof.svg"
+                    />
+                  </span>
                 </DropdownItem>
+
                 {/* <DropdownItem
                   key="settings"
                   textValue="settings"
                   style={{ textAlign: "center" }}
                   onPress={() => handleSelection("/settings")}
                 >
+                <span
+                    style={{ display: "inline-flex", alignItems: "center" }}
+                  >
                   SETTINGS
                   <Image
                     style={{
@@ -263,6 +271,7 @@ export default function Header() {
                     alt="cog icon"
                     src="/images/cog.svg"
                   />
+                  />
                 </DropdownItem> */}
               </DropdownSection>
               {user ? (
@@ -272,18 +281,22 @@ export default function Header() {
                   style={{ textAlign: "center" }}
                   onClick={() => logOut()}
                 >
-                  LOG OUT
-                  <Image
-                    style={{
-                      display: "inline",
-                      paddingBottom: "3px",
-                      marginLeft: "3px",
-                    }}
-                    width={15}
-                    height={15}
-                    alt="logout icon"
-                    src="/images/logout.svg"
-                  />
+                  <span
+                    style={{ display: "inline-flex", alignItems: "center" }}
+                  >
+                    LOG OUT
+                    <Image
+                      style={{
+                        display: "inline",
+                        paddingBottom: "3px",
+                        marginLeft: "3px",
+                      }}
+                      width={15}
+                      height={15}
+                      alt="logout icon"
+                      src="/images/logout.svg"
+                    />
+                  </span>
                 </DropdownItem>
               ) : (
                 <DropdownItem
@@ -292,18 +305,22 @@ export default function Header() {
                   style={{ textAlign: "center" }}
                   onPress={() => handleSelection("/sign-up")}
                 >
-                  SIGN IN
-                  <Image
-                    style={{
-                      display: "inline",
-                      paddingBottom: "3px",
-                      marginLeft: "3px",
-                    }}
-                    width={15}
-                    height={15}
-                    alt="signin icon"
-                    src="/images/signin.svg"
-                  />
+                  <span
+                    style={{ display: "inline-flex", alignItems: "center" }}
+                  >
+                    SIGN IN
+                    <Image
+                      style={{
+                        display: "inline",
+                        paddingBottom: "3px",
+                        marginLeft: "3px",
+                      }}
+                      width={15}
+                      height={15}
+                      alt="signin icon"
+                      src="/images/signin.svg"
+                    />
+                  </span>
                 </DropdownItem>
               )}
             </DropdownMenu>
@@ -383,18 +400,22 @@ export default function Header() {
                     handleMenu();
                   }}
                 >
-                  PROFILE
-                  <Image
-                    style={{
-                      display: "inline",
-                      paddingBottom: "3px",
-                      marginLeft: "3px",
-                    }}
-                    width={15}
-                    height={15}
-                    alt="profile icon"
-                    src="/images/prof.svg"
-                  />
+                  <span
+                    style={{ display: "inline-flex", alignItems: "center" }}
+                  >
+                    PROFILE
+                    <Image
+                      style={{
+                        display: "inline",
+                        paddingBottom: "3px",
+                        marginLeft: "3px",
+                      }}
+                      width={15}
+                      height={15}
+                      alt="profile icon"
+                      src="/images/prof.svg"
+                    />
+                  </span>
                 </DropdownItem>
                 {/* <DropdownItem
                   key="settings"
@@ -429,18 +450,22 @@ export default function Header() {
                     handleMenu();
                   }}
                 >
-                  LOG OUT
-                  <Image
-                    style={{
-                      display: "inline",
-                      paddingBottom: "3px",
-                      marginLeft: "3px",
-                    }}
-                    width={15}
-                    height={15}
-                    alt="logout icon"
-                    src="/images/logout.svg"
-                  />
+                  <span
+                    style={{ display: "inline-flex", alignItems: "center" }}
+                  >
+                    LOG OUT
+                    <Image
+                      style={{
+                        display: "inline",
+                        paddingBottom: "3px",
+                        marginLeft: "3px",
+                      }}
+                      width={15}
+                      height={15}
+                      alt="logout icon"
+                      src="/images/logout.svg"
+                    />
+                  </span>
                 </DropdownItem>
               ) : (
                 <DropdownItem
@@ -452,18 +477,22 @@ export default function Header() {
                     handleMenu();
                   }}
                 >
-                  SIGN IN
-                  <Image
-                    style={{
-                      display: "inline",
-                      paddingBottom: "3px",
-                      marginLeft: "3px",
-                    }}
-                    width={15}
-                    height={15}
-                    alt="signin icon"
-                    src="/images/signin.svg"
-                  />
+                  <span
+                    style={{ display: "inline-flex", alignItems: "center" }}
+                  >
+                    SIGN IN
+                    <Image
+                      style={{
+                        display: "inline",
+                        paddingBottom: "3px",
+                        marginLeft: "3px",
+                      }}
+                      width={15}
+                      height={15}
+                      alt="signin icon"
+                      src="/images/signin.svg"
+                    />
+                  </span>
                 </DropdownItem>
               )}
             </DropdownMenu>
