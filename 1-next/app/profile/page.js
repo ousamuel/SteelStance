@@ -182,7 +182,7 @@ export default function Profile() {
   }, [userRecords, sortConfig]);
 
   function handleSubmit() {
-    fetch("http://127.0.0.1:5555/currentUser", {
+    fetch("http://ouusam.pythonanywhere.com/currentUser", {
       method: "PATCH",
       credentials: "include",
       headers: {
@@ -298,7 +298,7 @@ export default function Profile() {
   ];
   console.log(userPrograms);
   function logOut() {
-    fetch("http://127.0.0.1:5555/logout", {
+    fetch("http://ouusam.pythonanywhere.com/logout", {
       method: "POST",
       credentials: "include",
     })
@@ -318,7 +318,7 @@ export default function Profile() {
       });
   }
   function handleDelete() {
-    fetch(`http://127.0.0.1:5555/currentUser`, {
+    fetch(`http://ouusam.pythonanywhere.com/currentUser`, {
       method: "DELETE",
       credentials: "include",
     })

@@ -16,7 +16,7 @@ export function Providers({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5555/currentUser", {
+    fetch("http://ouusam.pythonanywhere.com/currentUser", {
       method: "GET",
       credentials: "include",
       headers: {
@@ -33,7 +33,7 @@ export function Providers({ children }) {
         console.error("Error checking authentication:", error);
         setLoading(false);
       });
-    fetch("http://127.0.0.1:5555/records", {
+    fetch("http://ouusam.pythonanywhere.com/records", {
       credentials: "include",
     })
       .then((response) => (response.ok ? response.json() : null))
@@ -43,7 +43,7 @@ export function Providers({ children }) {
       })
       .catch((error) => console.error("Error fetching record data:", error));
 
-    fetch("http://127.0.0.1:5555/programs", {
+    fetch("http://ouusam.pythonanywhere.com/programs", {
       credentials: "include",
     })
       .then((response) => (response.ok ? response.json() : null))
@@ -66,6 +66,7 @@ export function Providers({ children }) {
     );
   }
   
+
   function handleSave(program, event) {
     console.log('handleSave')
     event.preventDefault();
@@ -76,7 +77,7 @@ export function Providers({ children }) {
       setUser({ ...user, programs: updatedPrograms });
     } else {
       setUser({ ...user, programs: [...user.programs, program] });
-      fetch("http://127.0.0.1:5555/userProgram", {
+      fetch("http://ouusam.pythonanywhere.com/userProgram", {
         method: "POST",
         credentials: "include",
         headers: {

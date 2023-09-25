@@ -143,7 +143,7 @@ export default function Records() {
     const currentType = formik.values.type;
     const currentGender = formik.values.gender;
 
-    fetch("http://127.0.0.1:5555/records", {
+    fetch("http://ouusam.pythonanywhere.com/records", {
       method: "POST",
       credentials: "include",
       headers: {

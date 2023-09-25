@@ -29,7 +29,7 @@ export default function Signup() {
     router.push("/profile");
   }
   const onLoginSubmit = () => {
-    fetch("http://127.0.0.1:5555/login", {
+    fetch("http://ouusam.pythonanywhere.com/login", {
       method: "POST",
       credentials: "include",
       headers: {
@@ -69,7 +69,7 @@ export default function Signup() {
     {
       formikErr.confirm
         ? console.log("fail pass match")
-        : fetch("http://127.0.0.1:5555/signup", {
+        : fetch("http://ouusam.pythonanywhere.com/signup", {
             method: "POST",
             credentials: "include",
             headers: {

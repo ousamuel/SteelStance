@@ -129,7 +129,7 @@ export default function Header() {
     }
   }, [pathname, setRouteText]);
   function logOut() {
-    fetch("http://127.0.0.1:5555/logout", {
+    fetch("http://ouusam.pythonanywhere.com/logout", {
       method: "POST",
       credentials: "include",
     })
