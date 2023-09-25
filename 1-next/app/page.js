@@ -60,7 +60,7 @@ export default function Home() {
             <p>STEELSTANCE</p>
             <p>STEELSTANCE</p>
           </div>
-          <img className="home-logo" src="/images/pngegg.png" />
+          <img className="home-logo" alt='home-logo' src="/images/pngegg.png" />
         </div>
 
         <div className="max-w-1/2 text-center">

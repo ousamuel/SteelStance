@@ -319,6 +319,7 @@ export default function Header() {
           <img
             id="header-logo"
             src="/images/pngegg.png"
+            alt="header-logo"
             style={{
               height: "60px",
               width: "60px",
