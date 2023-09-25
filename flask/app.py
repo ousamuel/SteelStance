@@ -193,8 +193,3 @@ class Programs(Resource):
         programs_ser=[p.to_dict() for p in programs]
         return make_response(programs_ser, 200)
 api.add_resource(Programs, '/programs')
-# if __name__ == "__main__":
-
-    # app.run(port=5555, debug = True )
-    # app.run(debug = False )
-    
