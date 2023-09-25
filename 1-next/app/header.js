@@ -2,7 +2,6 @@
 import { useContext, useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
-import Image from "next/image";
 import "./globals.css";
 import {
   Dropdown,
@@ -17,6 +16,7 @@ import {
   NavbarMenu,
   NavbarMenuItem,
   NavbarMenuToggle,
+  Image,
   Button,
 } from "@nextui-org/react";
 import { Context } from "./providers";
@@ -316,7 +316,7 @@ export default function Header() {
           <p className="text-lg font-bold">STEELSTANCE</p>
         </NavbarItem>
         <NavbarItem>
-          <img
+          <Image
             id="header-logo"
             src="/images/pngegg.png"
             alt="header-logo"
