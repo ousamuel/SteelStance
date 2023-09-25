@@ -125,7 +125,7 @@ export default function Profile() {
       setUserRecords(user.records);
       setUserPrograms(user.programs);
     }
-  }, [user]);
+  }, [user, router, setUserPrograms, setUserRecords]);
   const schema = Yup.object().shape({
     username: Yup.string().min(5, "Username must be at least 5 characters"),
     email: Yup.string().email("Invalid email format"),
