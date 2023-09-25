@@ -44,12 +44,14 @@ body {
   display: flex;
 }
 .home-logo {
+  border-radius: 0px;
   filter: hue-rotate(95deg);
   position: absolute;
-  z-index: 10;
+  z-index: 1000;
   opacity: 0.95;
   /* top: 70px; */
   /* left: 15px; */
+  /* max-width: none; */
   transform: scale(0.6);
 }
 .header {
@@ -108,8 +110,12 @@ body {
   justify-content: center;
   text-align: center;
 }
+.image-rep {
+  border-radius: 0px;
+}
 .home-body {
-  height: max(90vh, 50vw);
+  height: max(90vh,60vw);
+  min-height: 750px;
   /* max-height: 912px; */
   /* height:90vh; */
   overflow-y: auto;
