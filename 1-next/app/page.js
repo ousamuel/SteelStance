@@ -27,6 +27,7 @@ export default function Home() {
     }
     setBMI(calcBMI);
   }
+  // com
   return (
     <>
       <div className="home-body" style={{ backgroundColor: "#12A150" }}>
