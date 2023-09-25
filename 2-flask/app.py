@@ -9,7 +9,8 @@ from flask_bcrypt import Bcrypt
 from sqlalchemy.exc import IntegrityError
 from datetime import timedelta
 import os
-
+# import secrets
+# SECRET_KEY = secrets.token_bytes(32)
 
 app = Flask(__name__)
 f_bcrypt = Bcrypt(app)
@@ -17,10 +18,10 @@ Session(app)
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DATABASE = os.environ.get(
     "DB_URI", f"sqlite:///{os.path.join(BASE_DIR, 'app.db')}")
-app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE
-HEX_SEC_KEY= 'd5fb8c4fa8bd46638dadc4e751e0d68d'
-app.config['SECRET_KEY']=HEX_SEC_KEY
+
+SECRET_KEY = os.environ.get('SECRET_KEY')
+app.config['SECRET_KEY']=SECRET_KEY
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=60)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 cors = FlaskCors(app, origins=["http://localhost:3000"], supports_credentials=True)
@@ -192,5 +193,6 @@ class Programs(Resource):
 api.add_resource(Programs, '/programs')
 if __name__ == "__main__":
 
-    app.run(port=5555, debug = True )
+    # app.run(port=5555, debug = True )
+    app.run(debug = False )
     
