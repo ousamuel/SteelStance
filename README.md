@@ -56,7 +56,7 @@ Terminal 1: cd into the 1-next directory
 ```bash
 const BACKEND_URL = "http://localhost:3000";
 ```
-Run the command
+Run this command
 ```bash
 npm run dev
 ```
