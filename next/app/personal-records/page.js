@@ -22,8 +22,15 @@ import {
 
 export default function Records() {
   const router = useRouter();
-  const { BACKEND_URL, setRefresh, records, setRecords, user, categoryArr, setCategoryArr } =
-    useContext(Context);
+  const {
+    BACKEND_URL,
+    setRefresh,
+    records,
+    setRecords,
+    user,
+    categoryArr,
+    setCategoryArr,
+  } = useContext(Context);
   const [category, setCategory] = useState("All");
   const [sortConfig, setSortConfig] = useState({
     key: null,
@@ -140,50 +147,60 @@ export default function Records() {
   });
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const currentType = formik.values.type;
     const currentGender = formik.values.gender;
-
-    fetch(`${BACKEND_URL}/records`, {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json; charset=UTF-8",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        user_id: user.id,
-        type: formik.values.type,
-        gender: formik.values.gender,
-        body_weight: formik.values.body_weight,
-        weight_lb: formik.values.weight_lb,
-        date: formik.values.date,
-      }),
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          if (response.status === 403) {
-            // alert("User not found");
-            throw new Error("403: Username is taken");
-          } else if (response.status === 401) {
-            // alert("Incorrect password");
-            throw new Error("401: Email already in use");
+    if (
+      formik.values.type &&
+      formik.values.gender &&
+      formik.values.body_weight &&
+      formik.values.weight_lb &&
+      formik.values.date
+    ) {
+      fetch(`${BACKEND_URL}/records`, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          user_id: user.id,
+          type: formik.values.type,
+          gender: formik.values.gender,
+          body_weight: formik.values.body_weight,
+          weight_lb: formik.values.weight_lb,
+          date: formik.values.date,
+        }),
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            if (response.status === 403) {
+              // alert("User not found");
+              throw new Error("403: Username is taken");
+            } else if (response.status === 401) {
+              // alert("Incorrect password");
+              throw new Error("401: Email already in use");
+            }
           }
-        }
-      })
-      .then((data) => {
-        // console.log(data);
-        setRefresh((prevstate) => !prevstate);
-        document.getElementById("submit-form").reset();
-        formik.resetForm();
-        formik.setFieldValue("type", currentType);
-        formik.setFieldValue("gender", currentGender);
-        // router.push("/profile");
-      })
-      .catch((error) => {
-        console.error("Error posting:", error);
-      });
+        })
+        .then((data) => {
+          // console.log(data);
+          setRefresh((prevstate) => !prevstate);
+          document.getElementById("submit-form").reset();
+          formik.resetForm();
+          formik.setFieldValue("type", currentType);
+          formik.setFieldValue("gender", currentGender);
+          // router.push("/profile");
+        })
+        .catch((error) => {
+          console.error("Error posting:", error);
+        });
+    } else {
+      alert("Please fill out required fields to submit");
+    }
   };
 
   const formik = useFormik({
