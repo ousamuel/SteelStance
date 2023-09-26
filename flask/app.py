@@ -12,16 +12,16 @@ import os
 # import secrets
 # SECRET_KEY = secrets.token_bytes(32)
 
+SECRET_KEY = os.environ.get('SECRET_KEY')
 app = Flask(__name__)
+app.config['SECRET_KEY']=SECRET_KEY
+
 f_bcrypt = Bcrypt(app)
 Session(app)
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DATABASE = os.environ.get(
     "DB_URI", f"sqlite:///{os.path.join(BASE_DIR, 'app.db')}")
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE
-
-SECRET_KEY = os.environ.get('SECRET_KEY')
-app.config['SECRET_KEY']=SECRET_KEY
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=60)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # cors = FlaskCors(app, origins=["http://localhost:3000"], supports_credentials=True)
