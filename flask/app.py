@@ -12,10 +12,9 @@ import os
 # import secrets
 # SECRET_KEY = secrets.token_bytes(32)
 
-SEC_KEY = os.environ['SECRET_KEY']
 # SEC_KEY = os.environ.get('SECRET_KEY', '7a2b3c48de5f60182a1146fb92583cab31274eef40d83375a8fd3412ef431a98')
 app = Flask(__name__)
-app.secret_key = SEC_KEY
+
 
 f_bcrypt = Bcrypt(app)
 Session(app)
@@ -31,6 +30,8 @@ cors = FlaskCors(app, origins=["https://fitness-app-ousamuel.vercel.app"], suppo
 app.config['REMEMBER_COOKIE_DOMAIN']= "https://fitness-app-ousamuel.vercel.app"
 app.config["SESSION_COOKIE_SECURE"] = True
 app.config["SESSION_COOKIE_SAMESITE"] = "None"
+SEC_KEY = os.environ['SECRET_KEY']
+app.secret_key = SEC_KEY
 migrate = Migrate(app, db)
 db.init_app(app)
 api=Api(app)
