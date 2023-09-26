@@ -12,9 +12,8 @@ import os
 # import secrets
 # SECRET_KEY = secrets.token_bytes(32)
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
 app = Flask(__name__)
-app.config['SECRET_KEY']=SECRET_KEY
+app.config['SECRET_KEY']= os.environ.get('SECRET_KEY', '7a2b3c48de5f60182a1146fb92583cab31274eef40d83375a8fd3412ef431a98')
 
 f_bcrypt = Bcrypt(app)
 Session(app)
