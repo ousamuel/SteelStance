@@ -34,7 +34,7 @@ export function Providers({ children }) {
         console.error("Error checking authentication:", error);
         setLoading(false);
       });
-    fetch(`${BACKEND_URL}/records`, {
+    fetch("https://ouusam.pythonanywhere.com/records", {
       credentials: "include",
     })
       .then((response) => (response.ok ? response.json() : null))
