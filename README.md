@@ -52,7 +52,11 @@ Open two different terminals
 
 Terminal 1: cd into the 1-next directory
 - Open providers.js
-- On line 17, change BACKEND_URL to equal "http://localhost:3000"
+- Change line 17 to:
+```bash
+const BACKEND_URL = "http://localhost:3000";
+```
+Run the command
 ```bash
 npm run dev
 ```
@@ -60,11 +64,13 @@ Terminal 2: cd into the 2-flask directory
 - Open app.py
 - Comment out lines 16, 31, 32
 - Uncomment lines 17, 29, 30
+
+Add this block to end of app.py
 ```bash
 if __name__ == "__main__":
     app.run(port=5555, debug = True )
 ```
-
+Run this command
 ```bash
 python app.py
 ```
