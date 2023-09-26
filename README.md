@@ -51,10 +51,20 @@ bash setup.sh
 Open two different terminals
 
 Terminal 1: cd into the 1-next directory
+- Open providers.js
+- On line 17, change BACKEND_URL to equal "http://localhost:3000"
 ```bash
 npm run dev
 ```
 Terminal 2: cd into the 2-flask directory
+- Open app.py
+- Comment out lines 16, 31, 32
+- Uncomment lines 17, 29, 30
+```bash
+if __name__ == "__main__":
+    app.run(port=5555, debug = True )
+```
+
 ```bash
 python app.py
 ```
@@ -74,62 +84,3 @@ By default:
 Next.js server is ran on port 3000 & Flask application on port 5500 
 
 
-<!-- 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# Pokefun
-
-## Instructions
-
-- Go to https://pokefun.vercel.app/
-- Create a profile through Auth0
-- Enjoy the features of the app
-
-## Introduction
-
-- PokeFun is an app built of love for Pokemon. Shoutout to Satoshi Tajiri, the creator of Pokemon for giving us something wonderful and amazing. As of 6-1-23, this app only shows gen 1 Pokemon. Some details are for future ideas.
-
-### Features
-
-- Auth0 login
-- Edit/delete your profile
-- Play a mini game to collect coins
-- Use the coins to collect Pokemon
-- See other users
-- Links to my Github, LinkedIn and Medium
-
-## Conclusion
-
-- As the capstone for my Flatiron journey, I wanted to showcase everything I learned through the course. I used Next.js and Prisma as the setup for this project and Tailwind + CSS for UX.
-
-## Resource
-
-- Satoshi Tajiri - for Pokemon
-- instructor Antonio Reid
-- instructor Dj
-- https://projectpokemon.org/home/docs/spriteindex_148/3d-models-generation-1-pok%C3%A9mon-r90/
-- https://pokemon.fandom.com/wiki/Category:Generation_I_Pok%C3%A9mon
-- https://www.serebii.net/pokemon/gen1pokemon.shtml
-- cohort student Erkut Cakmak
-- uiverse.io -andrew-demchenk0 -->
