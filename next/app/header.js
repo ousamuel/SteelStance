@@ -24,7 +24,7 @@ import { Context } from "./providers";
 export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
-  const { routeText, setRouteText, user, setUser, isMenuOpen, setIsMenuOpen } =
+  const { BACKEND_URL,routeText, setRouteText, user, setUser, isMenuOpen, setIsMenuOpen } =
     useContext(Context);
   const programs = [
     {
@@ -133,7 +133,7 @@ export default function Header() {
     }
   }, [pathname, setRouteText]);
   function logOut() {
-    fetch("http://ouusam.pythonanywhere.com/logout", {
+    fetch(`${BACKEND_URL}/logout`, {
       method: "POST",
       credentials: "include",
     })

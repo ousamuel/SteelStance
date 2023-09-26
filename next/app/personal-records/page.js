@@ -22,7 +22,7 @@ import {
 
 export default function Records() {
   const router = useRouter();
-  const { setRefresh, records, setRecords, user, categoryArr, setCategoryArr } =
+  const { BACKEND_URL, setRefresh, records, setRecords, user, categoryArr, setCategoryArr } =
     useContext(Context);
   const [category, setCategory] = useState("All");
   const [sortConfig, setSortConfig] = useState({
@@ -143,7 +143,7 @@ export default function Records() {
     const currentType = formik.values.type;
     const currentGender = formik.values.gender;
 
-    fetch("http://ouusam.pythonanywhere.com/records", {
+    fetch(`${BACKEND_URL}/records`, {
       method: "POST",
       credentials: "include",
       headers: {

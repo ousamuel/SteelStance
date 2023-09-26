@@ -16,7 +16,7 @@ import * as Yup from "yup";
 import { Context } from "../providers";
 
 export default function Signup() {
-  const { user, setUser } = useContext(Context);
+  const { user, setUser, BACKEND_URL } = useContext(Context);
   const [formikErr, setFormikErr] = React.useState("");
   const [selected, setSelected] = React.useState("login");
   const [wrongEmail, setWrongEmail] = React.useState(false);
@@ -29,7 +29,7 @@ export default function Signup() {
     router.push("/profile");
   }
   const onLoginSubmit = () => {
-    fetch("http://ouusam.pythonanywhere.com/login", {
+    fetch(`${BACKEND_URL}/login`, {
       method: "POST",
       credentials: "include",
       headers: {
@@ -69,7 +69,7 @@ export default function Signup() {
     {
       formikErr.confirm
         ? console.log("fail pass match")
-        : fetch("http://ouusam.pythonanywhere.com/signup", {
+        : fetch(`${BACKEND_URL}/signup`, {
             method: "POST",
             credentials: "include",
             headers: {

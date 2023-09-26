@@ -14,7 +14,7 @@ export function Providers({ children }) {
   const [userPrograms, setUserPrograms] = useState([]);
   const [programs, setPrograms] = useState([]);
   const [loading, setLoading] = useState(true);
-  const BACKEND_URL = "http://ouusam.pythonanywhere.com";
+  const BACKEND_URL = "https://ouusam.pythonanywhere.com";
 
   useEffect(() => {
     fetch(`${BACKEND_URL}/currentUser`, {
@@ -77,7 +77,7 @@ export function Providers({ children }) {
       setUser({ ...user, programs: updatedPrograms });
     } else {
       setUser({ ...user, programs: [...user.programs, program] });
-      fetch("http://ouusam.pythonanywhere.com/userProgram", {
+      fetch(`${BACKEND_URL}/userProgram`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -95,6 +95,7 @@ export function Providers({ children }) {
   return (
     <Context.Provider
       value={{
+        BACKEND_URL,
         handleSave,
         refresh,
         setRefresh,

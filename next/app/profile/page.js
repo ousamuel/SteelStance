@@ -106,7 +106,8 @@ export default function Profile() {
     programs,
     handleSave,
     loading,
-    setRefresh
+    setRefresh,
+    BACKEND_URL
   } = useContext(Context);
   const [editing, setEditing] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -182,7 +183,7 @@ export default function Profile() {
   }, [userRecords, sortConfig]);
 
   function handleSubmit() {
-    fetch("http://ouusam.pythonanywhere.com/currentUser", {
+    fetch(`${BACKEND_URL}/currentUser`, {
       method: "PATCH",
       credentials: "include",
       headers: {
@@ -298,7 +299,7 @@ export default function Profile() {
   ];
   console.log(userPrograms);
   function logOut() {
-    fetch("http://ouusam.pythonanywhere.com/logout", {
+    fetch(`${BACKEND_URL}/logout`, {
       method: "POST",
       credentials: "include",
     })
@@ -318,7 +319,7 @@ export default function Profile() {
       });
   }
   function handleDelete() {
-    fetch(`http://ouusam.pythonanywhere.com/currentUser`, {
+    fetch(`${BACKEND_URL}/currentUser`, {
       method: "DELETE",
       credentials: "include",
     })
