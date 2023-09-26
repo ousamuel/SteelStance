@@ -68,7 +68,7 @@ export default function Signup() {
   const onSignSubmit = () => {
     {
       formikErr.confirm
-        ? console.log("fail pass match")
+        ? null
         : fetch(`${BACKEND_URL}/signup`, {
             method: "POST",
             credentials: "include",
@@ -90,7 +90,7 @@ export default function Signup() {
                 return response.json();
               } else if (response.status === 403) {
                 alert("username exists");
-                console.log(formik.values);
+                // console.log(formik.values);
                 throw new Error("User already exists with that username");
               } else if (response.status === 401) {
                 alert("email exists");
@@ -128,7 +128,7 @@ export default function Signup() {
     },
     validationSchema: schema,
   });
-  console.log(formik.errors);
+  // console.log(formik.errors);
 
   return (
     <div

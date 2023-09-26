@@ -173,7 +173,7 @@ export default function Records() {
         }
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setRefresh((prevstate) => !prevstate);
         document.getElementById("submit-form").reset();
         formik.resetForm();

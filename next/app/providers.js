@@ -68,7 +68,7 @@ export function Providers({ children }) {
   }
 
   function handleSave(program, event) {
-    console.log("handleSave");
+    // console.log("handleSave");
     event.preventDefault();
     event.stopPropagation();
     if (user.programs.includes(program)) {
@@ -88,7 +88,7 @@ export function Providers({ children }) {
       })
         .then((response) => (response.ok ? response.json() : null))
         .then((data) => {
-          console.log(data);
+          // console.log(data);
         });
     }
   }

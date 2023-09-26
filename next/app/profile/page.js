@@ -297,7 +297,7 @@ export default function Profile() {
       label: "name",
     },
   ];
-  console.log(userPrograms);
+  // console.log(userPrograms);
   function logOut() {
     fetch(`${BACKEND_URL}/logout`, {
       method: "POST",
