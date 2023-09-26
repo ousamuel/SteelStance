@@ -1,5 +1,6 @@
 This is a [Next.js](https://nextjs.org/) project with a backend powered by [Flask and SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/3.1.x/) and Tailwind CSS for UX.
 
+[Click here to visit the site](https://fitness-app-ousamuel.vercel.app/)
 # SteelStance
 
 [![Home Page Screen Shot](images/home-ss.png)](https://raw.githubusercontent.com/ousamuel/fitness-app/main/images/home-ss.png)
