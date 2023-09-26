@@ -14,9 +14,10 @@ export function Providers({ children }) {
   const [userPrograms, setUserPrograms] = useState([]);
   const [programs, setPrograms] = useState([]);
   const [loading, setLoading] = useState(true);
+  const BACKEND_URL = "http://ouusam.pythonanywhere.com";
 
   useEffect(() => {
-    fetch("http://ouusam.pythonanywhere.com/currentUser", {
+    fetch(`${BACKEND_URL}/currentUser`, {
       method: "GET",
       credentials: "include",
       headers: {
@@ -33,7 +34,7 @@ export function Providers({ children }) {
         console.error("Error checking authentication:", error);
         setLoading(false);
       });
-    fetch("http://ouusam.pythonanywhere.com/records", {
+    fetch(`${BACKEND_URL}/records`, {
       credentials: "include",
     })
       .then((response) => (response.ok ? response.json() : null))
@@ -43,7 +44,7 @@ export function Providers({ children }) {
       })
       .catch((error) => console.error("Error fetching record data:", error));
 
-    fetch("http://ouusam.pythonanywhere.com/programs", {
+    fetch(`${BACKEND_URL}/programs`, {
       credentials: "include",
     })
       .then((response) => (response.ok ? response.json() : null))
@@ -65,15 +66,14 @@ export function Providers({ children }) {
       </div>
     );
   }
-  
 
   function handleSave(program, event) {
-    console.log('handleSave')
+    console.log("handleSave");
     event.preventDefault();
     event.stopPropagation();
     if (user.programs.includes(program)) {
       const updatedPrograms = user.programs.filter((prog) => prog !== program);
-      
+
       setUser({ ...user, programs: updatedPrograms });
     } else {
       setUser({ ...user, programs: [...user.programs, program] });
