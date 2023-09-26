@@ -26,8 +26,8 @@ app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=60)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # cors = FlaskCors(app, origins=["http://localhost:3000"], supports_credentials=True)
 # app.config['REMEMBER_COOKIE_DOMAIN']= "http://localhost:3000"
-cors = FlaskCors(app, origins=["https://fitness-app-ousamuel.vercel.app/"], supports_credentials=True)
-app.config['REMEMBER_COOKIE_DOMAIN']= "https://fitness-app-ousamuel.vercel.app/"
+cors = FlaskCors(app, origins=["https://fitness-app-ousamuel.vercel.app"], supports_credentials=True)
+app.config['REMEMBER_COOKIE_DOMAIN']= "https://fitness-app-ousamuel.vercel.app"
 app.config["SESSION_COOKIE_SECURE"] = True
 app.config["SESSION_COOKIE_SAMESITE"] = "None"
 migrate = Migrate(app, db)
