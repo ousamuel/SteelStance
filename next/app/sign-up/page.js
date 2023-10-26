@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import {
   Tabs,
   Tab,
@@ -135,7 +135,7 @@ export default function Signup() {
       className="home-body"
       style={{
         backgroundColor: "#0a5329",
-        maxHeight:"90vh",
+        maxHeight: "90vh",
         display: "flex",
         flexWrap: "wrap",
         alignItems: "center",
@@ -198,6 +198,16 @@ export default function Signup() {
                     <Button type="submit" fullWidth color="primary">
                       Log In
                     </Button>
+                  </div>
+                  <div className="text-sm text-center">
+                    <p className="underline">Demo Login</p>
+                    <p>
+                      Email:{" "}
+                      <span className="text-red-500">user1@gmail.com</span>
+                    </p>
+                    <p>
+                      Password: <span className="text-red-500">user1pass</span>
+                    </p>
                   </div>
                 </form>
               </Tab>

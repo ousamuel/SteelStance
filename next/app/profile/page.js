@@ -2,8 +2,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import {
   Avatar,
-  AvatarGroup,
-  AvatarIcon,
   Button,
   Divider,
   Table,
@@ -333,7 +331,6 @@ export default function Profile() {
       .then(() => {
         setUser(null);
         setRefresh((prevstate) => !prevstate);
-        // setRefresh(prevstate=>!prevstate)
         router.push("/");
       })
       .catch((error) => {
@@ -342,9 +339,6 @@ export default function Profile() {
   }
   if (!user) {
     return (
-      // <div className="w-full text-center">
-      //   You do not have permission to view this.
-      // </div>
       <div className="h-screen w-screen flex justify-center align-center items-center">
         <Progress
           size="md"
@@ -356,89 +350,6 @@ export default function Profile() {
       </div>
     );
   }
-  // console.log(programs[0]);
-  // const programblock = user.programs.map((program) => (
-  //   // ${program.color}
-  //   // <Card
-  //   //   key={program.id + "b"}
-  //   //   className={`py-4 w-[250px] m-3 shadow-xl ${program.color}`}
-  //   // >
-  //   //   <CardHeader className={`pb-0 pt-2 px-4 flex-col items-start `}>
-  //   //     <div className="text-tiny uppercase font-bold w-full">
-  //   //       Instructor: {program.instructor.first_name}
-  //   //       <Checkbox
-  //   //         defaultSelected
-  //   //         className="float-right"
-  //   //         icon={<DeleteIcon/>}
-  //   //         // isSelected={user ? program in user.programs : false}
-  //   //         onChange={() => handleSave(program)}
-  //   //         color="danger"
-  //   //       />
-  //   //     </div>
-  //   //     {/* <small className="text-default-500">{program.instructor.bio}</small> */}
-  //   //     <h4 className="font-bold text-large">{program.type}</h4>
-  //   //     <h4 className="font-bold text-medium">{program.level}</h4>
-  //   //     <small className="text-default-500">Days: {program.days} </small>
-  //   //     <small className="text-default-500">Time: {program.time} </small>
-  //   //   </CardHeader>
-  //   //   <CardBody className="overflow-visible py-2 justify-center align-center">
-  //   //     {/* <Image
-  //   //       alt="Card background"
-  //   //       className="object-cover rounded-xl"
-  //   //       // src={program.src}
-  //   //       width={270}
-  //   //     /> */}
-  //   //   </CardBody>
-  //   // </Card>
-  //   <Card
-  //     key={program.id + "b"}
-  //     className={`py-4 m-7 shadow-2xl bg-inherit `}
-  //     style={{
-  //       borderColor: program.color,
-  //       boxShadow: `0px 0px 10px ${program.color}`,
-  //     }}
-  //   >
-  //     <CardHeader className={`pb-0 pt-2 px-4 flex-col items-start `}>
-  //       <div className="text-small mb-1 uppercase font-bold w-full text-white">
-  //         Instructor:{" "}
-  //         <span className="text-green-500">
-  //           {program.instructor.first_name}
-  //           {/* {program.id in user.programs ?  "true": "false"} */}
-  //         </span>
-  //         {user ? (
-  //           <Checkbox
-  //             className="float-right"
-  //             isSelected={toggle}
-  //             // isDisabled={toggle}
-  //             onClick={()=>setToggle(prevstate=>!prevstate)}
-  //             onChange={(event) => handleSave(program, event)}
-  //             color="success"
-  //           />
-  //         ) : null}
-  //       </div>
-  //       <small className="text-default-500 text-gray-300 max-w-[270px]">
-  //         {program.instructor.bio}
-  //       </small>
-  //       <h4 className="font-bold text-large" style={{ color: program.color }}>
-  //         {program.level}
-  //       </h4>
-  //       <small className="text-default-500 text-gray-300">
-  //         Days: {program.days}{" "}
-  //       </small>
-  //       <small className="text-default-500 text-gray-300">
-  //         Time: {program.time}{" "}
-  //       </small>
-  //     </CardHeader>
-  //     <CardBody className="overflow-visible py-2 justify-center align-center">
-  //       <Image
-  //         alt="Card background"
-  //         className="object-cover rounded-xl"
-  //         src={program.src}
-  //         width={270}
-  //       />
-  //     </CardBody>
-  //   </Card>
-  // ));
 
   return (
     <form onSubmit={formik.handleSubmit}>
