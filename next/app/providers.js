@@ -14,7 +14,7 @@ export function Providers({ children }) {
   const [userPrograms, setUserPrograms] = useState([]);
   const [programs, setPrograms] = useState([]);
   const [loading, setLoading] = useState(true);
-  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+  const BACKEND_URL = "https://ouusam.pythonanywhere.com";
 
   useEffect(() => {
     fetch(`${BACKEND_URL}/currentUser`, {
@@ -34,7 +34,7 @@ export function Providers({ children }) {
         console.error("Error checking authentication:", error);
         setLoading(false);
       });
-    fetch(`${BACKEND_URL}/records`, {
+      fetch(`${BACKEND_URL}/records`, {
       credentials: "include",
     })
       .then((response) => (response.ok ? response.json() : null))
