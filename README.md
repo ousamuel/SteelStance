@@ -1,6 +1,8 @@
 ## Introduction
 Welcome to SteelStance, a full-stack fitness application developed using the framework Next.js with a Flask backend. Users can calculate their BMI on the home page, view other users' personal records for powerlifts (squat, bench, deadlift) and view different workout programs. The workout program section is meant to simulate a website working in tandem with an actual fitness service.
 
+Video Demo: https://www.loom.com/share/ba8e4fa6b50b455da4cbbdf6c12f4bb3?sid=1d94f361-e22c-4d53-b686-c263d8deb8f8
+
 # SteelStance
 Deployed via Vercel & PythonAnywhere: [Click here to visit the site](https://fitness-app-ousamuel.vercel.app/)
 (Please allow time for the application to spin up or refresh)
