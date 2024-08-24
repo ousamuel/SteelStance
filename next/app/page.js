@@ -2,10 +2,17 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "./providers";
 import { useFormik } from "formik";
-import { Divider, Input, Button, Tooltip, Image } from "@nextui-org/react";
+import {
+  Divider,
+  Input,
+  Button,
+  Tooltip,
+  Image,
+  Progress,
+} from "@nextui-org/react";
 
 export default function Home() {
-  const { setIsMenuOpen, user } = useContext(Context);
+  const { setIsMenuOpen, user, loading } = useContext(Context);
   const [weight, setWeight] = useState(0);
   const [feet, setFeet] = useState(0);
   const [inches, setInches] = useState(0);
@@ -26,6 +33,19 @@ export default function Home() {
       setColor("red");
     }
     setBMI(calcBMI);
+  }
+  if (loading) {
+    return (
+      <div className="h-screen w-screen flex justify-center align-center items-center">
+        <Progress
+          size="md"
+          isIndeterminate
+          aria-label="Loading..."
+          className="w-3/4 "
+          color="success"
+        />
+      </div>
+    );
   }
   return (
     <>
@@ -75,11 +95,26 @@ export default function Home() {
             </p>
           </div>
           <div className="flex my-4 h-5 justify-center align-center items-center space-x-4 text-small ">
-            <Image className='image-rep' width={25} alt="boxing" src="./images/squat.svg" />
+            <Image
+              className="image-rep"
+              width={25}
+              alt="boxing"
+              src="./images/squat.svg"
+            />
             <Divider orientation="vertical" />
-            <Image className='image-rep' width={30} alt="cycling" src="./images/bench.svg" />
+            <Image
+              className="image-rep"
+              width={30}
+              alt="cycling"
+              src="./images/bench.svg"
+            />
             <Divider orientation="vertical" />
-            <Image className='image-rep' width={25} alt="boxing" src="./images/dl.svg" />
+            <Image
+              className="image-rep"
+              width={25}
+              alt="boxing"
+              src="./images/dl.svg"
+            />
           </div>
           <Divider className="my-2" />
           <div className="space-y-1 text-center mt-2">
@@ -90,11 +125,26 @@ export default function Home() {
             </p>
           </div>
           <div className="flex my-3 h-5 justify-center align-center items-center space-x-4 text-small ">
-            <Image className='image-rep' width={30} alt="boxing" src="./images/yoga.svg" />
+            <Image
+              className="image-rep"
+              width={30}
+              alt="boxing"
+              src="./images/yoga.svg"
+            />
             <Divider orientation="vertical" />
-            <Image className='image-rep' width={30} alt="cycling" src="./images/cycle.svg" />
+            <Image
+              className="image-rep"
+              width={30}
+              alt="cycling"
+              src="./images/cycle.svg"
+            />
             <Divider orientation="vertical" />
-            <Image className='image-rep' width={25} alt="boxing" src="./images/boxing.svg" />
+            <Image
+              className="image-rep"
+              width={25}
+              alt="boxing"
+              src="./images/boxing.svg"
+            />
           </div>
         </div>
       </div>
